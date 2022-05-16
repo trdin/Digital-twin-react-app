@@ -31,22 +31,32 @@ function Login() {
     }
 
     return (
+        <div className="container">
+            <div className="row justify-content-center">
+                <div className="col-12 col-lg-8">
+                    <div className="card mt-5 text-center" >
+                        <div className="card-body">
 
-        <form onSubmit={Login} className="form-group">
-            <div className="form-group">
-                {userContext.user ? <Navigate replace to="/" /> : ""}
-                <input type="username" className="form-control" name="username" placeholder="Username"
-                    value={username} onChange={(e) => (setUsername(e.target.value))} required />
+                            <form onSubmit={Login} className="form-group">
+                                <div className="form-group">
+                                    {userContext.user ? <Navigate replace to="/" /> : ""}
+                                    <input type="username" className="form-control" name="username" placeholder="Username"
+                                        value={username} onChange={(e) => (setUsername(e.target.value))} required />
+                                </div>
+                                <div className="form-group">
+                                    <input type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password"
+                                        value={password} onChange={(e) => (setPassword(e.target.value))} required />
+                                </div>
+                                <div className="form-group">
+                                    <Button text="Prijavi" onClick={Login} />
+                                </div>
+                                {error != "" ? <label className="alert alert-danger">{error}</label> : ""}
+                            </form>
+                        </div>
+                    </div >
+                </div>
             </div>
-            <div className="form-group">
-                <input type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password"
-                    value={password} onChange={(e) => (setPassword(e.target.value))} required />
-            </div>
-            <div className="form-group">
-                <Button text="Prijavi" onClick={Login} />
-            </div>
-            {error != "" ? <label className="alert alert-danger">{error}</label> : ""}
-        </form>
+        </div >
 
     );
 }

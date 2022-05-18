@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Jumbotron from "../components/Jumbotron";
 
 function Home() {
+
     const getLocation = function () {
         navigator.geolocation.getCurrentPosition(function (position) {
             console.log("Latitude is :", position.coords.latitude);
@@ -9,6 +10,7 @@ function Home() {
         });
     }
     getLocation();
+
     //TODO do map
     return (<>
 

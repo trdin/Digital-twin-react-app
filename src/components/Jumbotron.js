@@ -1,5 +1,5 @@
 function Jumbotron(props) {
-    console.log(props)
+
     if (props == undefined) {
         return <></>
     } else {

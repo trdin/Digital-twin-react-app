@@ -18,7 +18,7 @@ function Home() {
         <Jumbotron title="Iščeš študentsko Delo !?"
             description="Za tvoje delo poskrbimo mi. Pri nas najdeš najširšo ponudbo študentskega dela iz različnih virov."
             promp="Poglej si vse ponudbe študentskega dela"
-            url="/"
+            url="/studentWork"
             bgcolor="greenBackground"
             textColor="white"
             textOrient="left"

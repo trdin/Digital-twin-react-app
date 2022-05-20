@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #C8C8C8;
 }
 
 code {
@@ -15,4 +16,20 @@ code {
 .photo {
   width: 400px !important;
   height: auto !important;
+}
+
+.greenBackground {
+  background-color: #5cb85c !important;
+}
+
+.darkBackground {
+  background-color: #151c24 !important
+}
+
+.lightBackground {
+  background-color: #C8C8C8 !important
+}
+
+.workContainer {
+  background-color: #d3d3d3 !important;
 }

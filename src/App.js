@@ -6,7 +6,8 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
 import Logout from "./components/Logout";
-import Home from "./components/Home";
+import Home from "./pages/Home";
+import StudentWork from "./pages/StudentWork";
 function App() {
 
   const [user, setUser] = useState(localStorage.user ? JSON.parse(localStorage.user) : null);
@@ -24,24 +25,20 @@ function App() {
       }}>
         <div className="App">
           <Header title="My application"></Header>
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-xl-12">
-                <div className="card mt-5 text-center">
-                  <div className="card-body">
-                    <Routes>
-                      <Route path="/" exact element={<Home />}></Route>
-                      <Route path="/login" exact element={<Login />}></Route>
-                      <Route path="/register" element={<Register />}></Route>
-                      <Route path="/profile" element={<Profile />}></Route>
-                      <Route path="/logout" element={<Logout />}></Route>
-                    </Routes>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
+
+
+          <Routes>
+            <Route path="/" exact element={<Home />}></Route>
+            <Route path="/login" exact element={<Login />}></Route>
+            <Route path="/register" element={<Register />}></Route>
+            <Route path="/profile" element={<Profile />}></Route>
+            <Route path="/logout" element={<Logout />}></Route>
+            <Route path="/studentWork" element={<StudentWork />}></Route>
+          </Routes>
+
         </div>
+
       </UserContext.Provider>
     </BrowserRouter >
   );

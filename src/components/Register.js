@@ -50,27 +50,36 @@ function Register() {
 
 
     return (
+        <div className="container">
+            <div className="row justify-content-center">
+                <div className="col-12 col-lg-8">
+                    <div className="card mt-5 text-center" >
+                        <div className="card-body">
+                            <form onSubmit={Register}>
+                                <div className="form-group">
+                                    <input type="text" className="form-control" name="email" placeholder="Email" value={email} onChange={(e) => (setEmail(e.target.value))} />
+                                </div>
+                                <div className="form-group">
+                                    <input type="text" className="form-control" name="username" placeholder="Username" value={username} onChange={(e) => (setUsername(e.target.value))} />
+                                </div>
+                                <div className="form-group">
+                                    <input type="password" className="form-control" name="password" placeholder="Password" value={password} onChange={(e) => (setPassword(e.target.value))} />
+                                </div>
+                                <div className="form-group">
+                                    <input type="password" className="form-control" name="repeat-password" placeholder="Repeat Password" value={repPassword} onChange={(e) => (setRepPassword(e.target.value))} />
+                                </div>
+                                <div className="form-group">
+                                    <Button text="Login" />
+                                </div>
 
-        <form onSubmit={Register}>
-            <div className="form-group">
-                <input type="text" className="form-control" name="email" placeholder="Email" value={email} onChange={(e) => (setEmail(e.target.value))} />
-            </div>
-            <div className="form-group">
-                <input type="text" className="form-control" name="username" placeholder="Username" value={username} onChange={(e) => (setUsername(e.target.value))} />
-            </div>
-            <div className="form-group">
-                <input type="password" className="form-control" name="password" placeholder="Password" value={password} onChange={(e) => (setPassword(e.target.value))} />
-            </div>
-            <div className="form-group">
-                <input type="password" className="form-control" name="repeat-password" placeholder="Repeat Password" value={repPassword} onChange={(e) => (setRepPassword(e.target.value))} />
-            </div>
-            <div className="form-group">
-                <Button text="Login" />
-            </div>
+                                {error != "" ? <label className="alert alert-danger">{error}</label> : ""}
 
-            {error != "" ? <label className="alert alert-danger">{error}</label> : ""}
-
-        </form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     );
 }

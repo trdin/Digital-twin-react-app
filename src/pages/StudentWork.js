@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import WorkFrame from '../components/workFrame';
 
+
 function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
     return {
@@ -26,6 +27,7 @@ function StudentWork() {
             setLatitude(position.coords.latitude)
         });
     }
+    const HandleChangeSearch = function (e) { setSearch(e.target.value) }
     getLocation();
 
 
@@ -34,7 +36,6 @@ function StudentWork() {
         const getWork = async function () {
             const res = await fetch("http://localhost:3000/studentWork");
             const data = await res.json();
-            console.log(data)
             setWork(data);
         }
         getWork();
@@ -42,10 +43,9 @@ function StudentWork() {
 
     async function Search(e) {
         e.preventDefault();
-        /*if (!search) {
-            alert("input tag!");
-            return;
-        }*/
+
+        getLocation();
+
         const res = await fetch('http://localhost:3000/studentWork/search', {
             method: 'POST',
             credentials: 'include',
@@ -56,23 +56,21 @@ function StudentWork() {
                 longitude: longitude,
                 distance: distance,
             })
-        })
+        }).catch(errror => { console.error(errror); });
         const data = await res.json();
         setWork(data);
-        setSearchParam(search);
-
-        console.log(data)
-
+        //setSearchParam(search);
     }
 
 
     return (
         <div className="container">
+
             <div className="jumbotron jumbotron-fluid workContainer text-center shadow-sm">
                 <div className="container">
                     <form onSubmit={Search} className="form-inline my-2 my-lg-0">
                         <div className="form-group">
-                            <input className="form-control mr-sm-2" type="search" name="search" placeholder="Search by type" aria-label="Search" value={search} onChange={(e) => { setSearch(e.target.value) }} />
+                            <input className="form-control mr-sm-2" type="search" name="search" placeholder="Search by type" aria-label="Search" value={search} onChange={HandleChangeSearch} />
                         </div>
                         <div className="form-group">
                             {
@@ -100,3 +98,4 @@ function StudentWork() {
 
 }
 export default StudentWork;
+

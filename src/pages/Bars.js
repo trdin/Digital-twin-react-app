@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import WorkFrame from '../components/WorkFrame';
+import BarFrame from '../components/BarFrame';
 
 
 function getWindowDimensions() {
@@ -10,9 +10,9 @@ function getWindowDimensions() {
     };
 }
 
-function StudentWork() {
+function Bars() {
 
-    const [work, setWork] = useState([]);
+    const [bars, setBars] = useState([]);
     const [search, setSearch] = useState('');
     const [distance, setDiscance] = useState('');
     const [longitude, setLongitude] = useState(0);
@@ -35,12 +35,12 @@ function StudentWork() {
 
 
     useEffect(function () {
-        const getWork = async function () {
-            const res = await fetch("http://localhost:3000/studentWork");
+        const getBars = async function () {
+            const res = await fetch("http://localhost:3000/bars");
             const data = await res.json();
-            setWork(data);
+            setBars(data);
         }
-        getWork();
+        getBars();
     }, []);
 
     async function Search(e) {
@@ -50,12 +50,9 @@ function StudentWork() {
 
         if (isNaN(distance) && distance != "") {
             setSearchError("Distance must be a number")
-        } else if (isNaN(payFrom) && payFrom != "") {
-            setSearchError("pay from must be a number")
-        } else if (isNaN(payTo) && payTo != "") {
-            setSearchError("pay to must be a number")
-        } else {
-            const res = await fetch('http://localhost:3000/studentWork/search', {
+        }
+        else {
+            const res = await fetch('http://localhost:3000/bars/search', {
                 method: 'POST',
                 credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
@@ -63,14 +60,12 @@ function StudentWork() {
                     search: search,
                     latitude: latitude,
                     longitude: longitude,
-                    distance: distance,
-                    payFrom: payFrom,
-                    payTo: payTo
+                    distance: distance
                 })
             }).catch(errror => { console.error(errror); });
             const data = await res.json();
             if (data != undefined) {
-                setWork(data);
+                setBars(data);
             }
             setSearchError("")
         }
@@ -96,12 +91,7 @@ function StudentWork() {
                             }
                         </div>
                         <div className="form-group">
-                            <input className="form-control mr-sm-2" type="search" name="search" placeholder="Pay neto from" aria-label="Search" value={payFrom} onChange={(e) => setPayFrom(e.target.value)} />
-                        </div><div className="form-group">
-                            <input className="form-control mr-sm-2" type="search" name="search" placeholder="Pay neto to" aria-label="Search" value={payTo} onChange={(e) => setPayTo(e.target.value)} />
-                        </div>
-                        <div className="form-group">
-                            <button className="btn btn-success my-2 my-sm-0" type="submit" >Search by tag</button>
+                            <button className="btn btn-success my-2 my-sm-0" type="submit" >Search by Name</button>
                         </div>
                     </form>
                     {searchError != "" ?
@@ -115,7 +105,7 @@ function StudentWork() {
                 </div>
             </div>
             <div className="row">
-                {work.map(workEl => (<WorkFrame work={workEl} key={workEl._id}></WorkFrame>))}
+                {bars.map(bar => (<BarFrame bar={bar} key={bar._id}></BarFrame>))}
             </div>
 
 
@@ -124,5 +114,5 @@ function StudentWork() {
 
 
 }
-export default StudentWork;
+export default Bars;
 

@@ -17,6 +17,7 @@ function Header(props) {
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item"><Link className="nav-link" to='/'>Home</Link></li>
                         <li className="nav-item"><Link className="nav-link" to='/studentWork'>StudentWork</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to='/bars'>Bars</Link></li>
                         <UserContext.Consumer>
                             {context => (
                                 context.user ?

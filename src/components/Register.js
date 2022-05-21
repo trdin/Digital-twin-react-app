@@ -19,32 +19,39 @@ function Register() {
     //const [ReCaptcha, setReCaptcha] = useState("");
     async function Register(e) {
         e.preventDefault();
-
-        if (password.length >= 6 && password == repPassword && validateEmail(email)) {
-            const res = await fetch("http://localhost:3000/users", {
-                method: 'POST',
-                credentials: 'include',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    email: email,
-                    username: username,
-                    password: password,
-                })
-            });
-            console.log(res)
-            const data = await res.json();
-            if (data._id !== undefined) {
-                window.location.href = "/";
-            }
-            else {
-                setUsername("");
-                setPassword("");
-                setEmail("");
-                setError("Registration failed");
-            }
-        } else {
-            setError("Data Input Error");
+        console.log(validateEmail(email))
+        if (!validateEmail(email)) {
+            setError("Please use a valid email")
+            return
         }
+        if (password.length < 6) {
+            setError("Password must be at least 6 characters long")
+            return
+        }
+        if (password != repPassword) {
+            setError("Passwords do not match")
+            return
+        }
+
+        const res = await fetch(process.env.REACT_APP_mainAPIurl + "/users", {
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                email: email,
+                username: username,
+                password: password,
+            })
+        });
+        const data = await res.json();
+        if (data._id === undefined) {
+            setUsername("");
+            setPassword("");
+            setEmail("");
+            setError("Registration failed");
+        }
+        window.location.href = "/";
+        setError("")
     }
 
 

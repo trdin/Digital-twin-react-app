@@ -7,7 +7,7 @@ function Logout(){
     useEffect(function(){
         const logout = async function(){
             userContext.setUserContext(null);
-            const res = await fetch("http://localhost:3001/users/logout");
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/users/logout");
         }
         logout();
     }, []);

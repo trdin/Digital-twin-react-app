@@ -20,10 +20,10 @@ function StudentWork() {
     const [latitude, setLatitude] = useState(0);
 
     const getLocation = function () {
-        console.log(longitude)
+        // console.log(longitude)
         navigator.geolocation.getCurrentPosition(function (position) {
             setLongitude(position.coords.longitude)
-            console.log(longitude)
+            // console.log(longitude)
             setLatitude(position.coords.latitude)
         });
     }
@@ -34,7 +34,7 @@ function StudentWork() {
 
     useEffect(function () {
         const getWork = async function () {
-            const res = await fetch("http://localhost:3000/studentWork");
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/studentWork");
             const data = await res.json();
             setWork(data);
         }
@@ -46,7 +46,7 @@ function StudentWork() {
 
         getLocation();
 
-        const res = await fetch('http://localhost:3000/studentWork/search', {
+        const res = await fetch(process.env.REACT_APP_mainAPIurl + '/studentWork/search', {
             method: 'POST',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
@@ -64,35 +64,38 @@ function StudentWork() {
 
 
     return (
-        <div className="container">
+        <>
+            
+            <div className="container">
 
-            <div className="jumbotron jumbotron-fluid workContainer text-center shadow-sm">
-                <div className="container">
-                    <form onSubmit={Search} className="form-inline my-2 my-lg-0">
-                        <div className="form-group">
-                            <input className="form-control mr-sm-2" type="search" name="search" placeholder="Search by type" aria-label="Search" value={search} onChange={HandleChangeSearch} />
-                        </div>
-                        <div className="form-group">
-                            {
-                                longitude == 0 && latitude == 0 ?
-                                    <input className="form-control mr-sm-2" type="search" name="search by type" placeholder="Enable location" aria-label="Enable location" disabled />
-                                    :
-                                    <input className="form-control mr-sm-2" type="search" name="search by type" placeholder="Input distance" aria-label="Search" value={distance} onChange={(e) => { setDiscance(e.target.value) }} />
+                <div className="jumbotron jumbotron-fluid workContainer text-center shadow-sm">
+                    <div className="container">
+                        <form onSubmit={Search} className="form-inline my-2 my-lg-0">
+                            <div className="form-group">
+                                <input className="form-control mr-sm-2" type="search" name="search" placeholder="Search by type" aria-label="Search" value={search} onChange={HandleChangeSearch} />
+                            </div>
+                            <div className="form-group">
+                                {
+                                    longitude === 0 && latitude === 0 ?
+                                        <input className="form-control mr-sm-2" type="search" name="search by type" placeholder="Enable location" aria-label="Enable location" disabled />
+                                        :
+                                        <input className="form-control mr-sm-2" type="search" name="search by type" placeholder="Input distance" aria-label="Search" value={distance} onChange={(e) => { setDiscance(e.target.value) }} />
 
-                            }
-                        </div>
-                        <div className="form-group">
-                            <button className="btn btn-success my-2 my-sm-0" type="submit" >Search by tag</button>
-                        </div>
-                    </form>
+                                }
+                            </div>
+                            <div className="form-group">
+                                <button className="btn btn-success my-2 my-sm-0" type="submit" >Search by tag</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div className="row">
-                {work.map(workEl => (<WorkFrame work={workEl} key={workEl._id}></WorkFrame>))}
-            </div>
+                <div className="row">
+                    {work.map(workEl => (<WorkFrame work={workEl} key={workEl._id}></WorkFrame>))}
+                </div>
 
 
-        </div>
+            </div>
+        </>
     )
 
 

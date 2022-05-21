@@ -8,7 +8,7 @@ function Profile() {
 
     useEffect(function () {
         const getProfile = async function () {
-            const res = await fetch("http://localhost:3001/users/profile", { credentials: "include" });
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/users/profile", { credentials: "include" });
             const data = await res.json();
             setProfile(data);
             console.log(data)

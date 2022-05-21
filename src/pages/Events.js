@@ -1,17 +1,13 @@
 import { useState, useEffect } from 'react';
-import WorkFrame from '../components/frames/WorkFrame';
+import EventFrame from '../components/frames/EventFrame';
 
+function Events() {
 
-
-function StudentWork() {
-
-    const [work, setWork] = useState([]);
+    const [events, setEvents] = useState([]);
     const [search, setSearch] = useState('');
     const [distance, setDiscance] = useState('');
     const [longitude, setLongitude] = useState(0);
     const [latitude, setLatitude] = useState(0);
-    const [payFrom, setPayFrom] = useState('');
-    const [payTo, setPayTo] = useState('');
     const [searchError, setSearchError] = useState('');
 
 
@@ -24,25 +20,25 @@ function StudentWork() {
     getLocation();
 
     async function clearParams() {
+
         setSearch("")
         setDiscance("");
-        setPayFrom("");
-        setPayTo("");
         setSearchError("");
-        const res = await fetch("http://localhost:3000/studentWork");
+        const res = await fetch("http://localhost:3000/events");
         const data = await res.json();
-        setWork(data);
+        setEvents(data);
     }
 
 
 
+
     useEffect(function () {
-        const getWork = async function () {
-            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/studentWork");
+        const getEvents = async function () {
+            const res = await fetch("http://localhost:3000/events");
             const data = await res.json();
-            setWork(data);
+            setEvents(data);
         }
-        getWork();
+        getEvents();
     }, []);
 
     async function Search(e) {
@@ -52,12 +48,9 @@ function StudentWork() {
 
         if (isNaN(distance) && distance != "") {
             setSearchError("Distance must be a number")
-        } else if (isNaN(payFrom) && payFrom != "") {
-            setSearchError("pay from must be a number")
-        } else if (isNaN(payTo) && payTo != "") {
-            setSearchError("pay to must be a number")
-        } else {
-            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/studentWork/search", {
+        }
+        else {
+            const res = await fetch('http://localhost:3000/events/search', {
                 method: 'POST',
                 credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
@@ -65,17 +58,16 @@ function StudentWork() {
                     search: search,
                     latitude: latitude,
                     longitude: longitude,
-                    distance: distance,
-                    payFrom: payFrom,
-                    payTo: payTo
+                    distance: distance
                 })
             }).catch(errror => { console.error(errror); });
             const data = await res.json();
             if (data[0] != undefined) {
-                setWork(data);
+                setEvents(data);
             } else {
-                setWork([]);
+                setEvents([]);
             }
+
             setSearchError("")
         }
     }
@@ -83,7 +75,7 @@ function StudentWork() {
 
     return (
         <div className="container">
-
+            <i class="fa-solid fa-calendar-days"></i>
             <div className="jumbotron jumbotron-fluid dataContainer text-center shadow-sm">
                 <div className="container">
                     <form onSubmit={Search} className="form-inline my-2 my-lg-0">
@@ -100,12 +92,7 @@ function StudentWork() {
                             }
                         </div>
                         <div className="form-group">
-                            <input className="form-control mr-sm-2 mb-2" type="search" name="search" placeholder="Pay neto from" aria-label="Search" value={payFrom} onChange={(e) => setPayFrom(e.target.value)} />
-                        </div><div className="form-group">
-                            <input className="form-control mr-sm-2 mb-2" type="search" name="search" placeholder="Pay neto to" aria-label="Search" value={payTo} onChange={(e) => setPayTo(e.target.value)} />
-                        </div>
-                        <div className="form-group">
-                            <button className="btn btn-success mb-2" type="submit" >Search by tag</button>
+                            <button className="btn btn-success mb-2" type="submit" >Search by Name</button>
                         </div>
                     </form>
                     <button className="btn btn-danger mt-2" onClick={clearParams}>Clear Parameters</button>
@@ -115,15 +102,18 @@ function StudentWork() {
                         </div>
                         : ""
                     }
+
+
                 </div>
             </div>
             <div className="row">
-                {work.map(workEl => (<WorkFrame work={workEl} key={workEl._id}></WorkFrame>))}
+                {events.map(event => (<EventFrame event={event} key={event._id}></EventFrame>))}
             </div>
+
+
         </div>
     )
 
 
 }
-export default StudentWork;
-
+export default Events;

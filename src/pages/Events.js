@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import EventFrame from '../components/frames/EventFrame';
+import Map from '../components/Map';
 
 function Events() {
 
@@ -24,7 +25,7 @@ function Events() {
         setSearch("")
         setDiscance("");
         setSearchError("");
-        const res = await fetch("http://localhost:3000/events");
+        const res = await fetch(process.env.REACT_APP_mainAPIurl + "/events");
         const data = await res.json();
         setEvents(data);
     }
@@ -34,7 +35,7 @@ function Events() {
 
     useEffect(function () {
         const getEvents = async function () {
-            const res = await fetch("http://localhost:3000/events");
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/events");
             const data = await res.json();
             setEvents(data);
         }
@@ -50,7 +51,7 @@ function Events() {
             setSearchError("Distance must be a number")
         }
         else {
-            const res = await fetch('http://localhost:3000/events/search', {
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + '/events/search', {
                 method: 'POST',
                 credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
@@ -73,7 +74,9 @@ function Events() {
     }
 
 
-    return (
+    return (<>
+        <Map events={events} userLocation={[latitude, longitude]} className={"shadow"} />
+
         <div className="container">
             <i class="fa-solid fa-calendar-days"></i>
             <div className="jumbotron jumbotron-fluid dataContainer text-center shadow-sm">
@@ -112,7 +115,7 @@ function Events() {
 
 
         </div>
-    )
+    </>)
 
 
 }

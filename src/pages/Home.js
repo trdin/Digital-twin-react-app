@@ -10,7 +10,7 @@ function Home() {
     const [events, setEevents] = useState([]);
     const [faculties, setFaculties] = useState([]);
     const [restaurants, setRestaurants] = useState([]);
-    const [wifi, setWifi] = useState([]);
+    const [wifis, setWifi] = useState([]);
     
     useEffect(function () {
         const getWork = async function () {
@@ -62,7 +62,7 @@ function Home() {
     }, []);
     useEffect(function () {
         const getWifi = async function () {
-            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/wifi");
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/wifi/wifiSpeeds");
             const data = await res.json();
             setWifi(data);
         }
@@ -70,12 +70,12 @@ function Home() {
     }, []);
     if (work === undefined || bars === undefined || dorms === undefined ||
         events === undefined || faculties === undefined ||
-        restaurants === undefined || wifi === undefined) {
+        restaurants === undefined || wifis === undefined) {
         return <></>
     }
     return (<>
 
-        <Map work={work} bars={bars} dorms={dorms} events={events} faculties={faculties} restaurants={restaurants} wifi={wifi} />
+        <Map work={work} bars={bars} dorms={dorms} events={events} faculties={faculties} restaurants={restaurants} wifis={wifis} />
 
         <Jumbotron title="Iščeš študentsko Delo !?"
             description="Za tvoje delo poskrbimo mi. Pri nas najdeš najširšo ponudbo študentskega dela iz različnih virov."

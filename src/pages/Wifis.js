@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import WifiFrame from '../components/frames/WifiFrame';
+import Map from '../components/Map';
 
 
 function getWindowDimensions() {
@@ -34,7 +35,7 @@ function Wifis() {
         setSearch("")
         setDiscance("");
         setSearchError("");
-        const res = await fetch("http://localhost:3000/wifi/wifiSpeeds");
+        const res = await fetch(process.env.REACT_APP_mainAPIurl + "/wifi/wifiSpeeds");
         const data = await res.json();
         setWifis(data);
     }
@@ -44,7 +45,7 @@ function Wifis() {
 
     useEffect(function () {
         const getWifis = async function () {
-            const res = await fetch("http://localhost:3000/wifi/wifiSpeeds");
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/wifi/wifiSpeeds");
             const data = await res.json();
             setWifis(data);
         }
@@ -60,7 +61,7 @@ function Wifis() {
             setSearchError("Distance must be a number")
         }
         else {
-            const res = await fetch('http://localhost:3000/wifi/search', {
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + '/wifi/search', {
                 method: 'POST',
                 credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
@@ -80,9 +81,9 @@ function Wifis() {
             setSearchError("")
         }
     }
+    return (<>
+        <Map wifis={wifis} userLocation={[latitude, longitude]} className={"shadow"} />
 
-
-    return (
         <div className="container">
 
             <div className="jumbotron jumbotron-fluid dataContainer text-center shadow-sm">
@@ -121,7 +122,7 @@ function Wifis() {
 
 
         </div>
-    )
+    </>)
 
 
 }

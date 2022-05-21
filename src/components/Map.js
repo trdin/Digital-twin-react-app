@@ -26,37 +26,37 @@ let WorkIcon = L.icon({
     iconAnchor: customIconAnchor,
     popupAnchor: customIconPopupAnchor
 });
-let BarsIcon = L.icon({ // TODO adjust
+let BarsIcon = L.icon({
     iconUrl: barIcon,
     iconSize: customIconSize,
     iconAnchor: customIconAnchor,
     popupAnchor: customIconPopupAnchor
 });
-let DormsIcon = L.icon({ // TODO adjust
+let DormsIcon = L.icon({
     iconUrl: dormIcon,
     iconSize: customIconSize,
     iconAnchor: customIconAnchor,
     popupAnchor: customIconPopupAnchor
 });
-let EventsIcon = L.icon({ // TODO adjust
+let EventsIcon = L.icon({
     iconUrl: eventsIcon,
     iconSize: customIconSize,
     iconAnchor: customIconAnchor,
     popupAnchor: customIconPopupAnchor
 });
-let FacultiesIcon = L.icon({ // TODO adjust
+let FacultiesIcon = L.icon({
     iconUrl: facultiesIcon,
     iconSize: customIconSize,
     iconAnchor: customIconAnchor,
     popupAnchor: customIconPopupAnchor
 });
-let RestaurantsIcon = L.icon({ // TODO adjust
+let RestaurantsIcon = L.icon({
     iconUrl: restaurantsIcon,
     iconSize: customIconSize,
     iconAnchor: customIconAnchor,
     popupAnchor: customIconPopupAnchor
 });
-let WifiIcon = L.icon({ // TODO adjust
+let WifisIcon = L.icon({ 
     iconUrl: wifiIcon,
     iconSize: customIconSize,
     iconAnchor: customIconAnchor,
@@ -77,7 +77,7 @@ function Map(props) {
             </MapContainer>
         </>
     } else {
-
+        console.log(props.wifis);
         return (
             <MapContainer className={props.className} center={initViewPos} zoom={initZoom} scrollWheelZoom={true} attributionControl={false}>
                 <TileLayer
@@ -163,12 +163,12 @@ function Map(props) {
                         ))}
 
                 {/* Wi-fis */
-                    (props.wifi === undefined) ? "" :
-                        props.wifi.map(({ location, name }, index) => (
-                            (location.coordinates[0] === 0 && location.coordinates[1] === 0) ? "" : (
-                                <Marker position={location.coordinates} icon={WifiIcon} key={"wifi_marker" + index}>
+                    (props.wifis === undefined) ? "" :
+                        props.wifis.map(({ wifi }, index) => (
+                            (wifi.location.coordinates[0] === 0 && wifi.location.coordinates[1] === 0) ? "" : (
+                                <Marker position={wifi.location.coordinates} icon={WifisIcon} key={"wifis_marker" + index}>
                                     <Popup>
-                                        {name}
+                                        {wifi.name}
                                     </Popup>
                                 </Marker>
                             )

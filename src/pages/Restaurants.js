@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import RestaurantFrame from '../components/frames/RestaurantFrame';
+import Map from '../components/Map';
 
 function Restaurants() {
 
@@ -24,7 +25,7 @@ function Restaurants() {
         setSearch("")
         setDiscance("");
         setSearchError("");
-        const res = await fetch("http://localhost:3000/restaurants");
+        const res = await fetch(process.env.REACT_APP_mainAPIurl + "/restaurants");
         const data = await res.json();
         setRestaurants(data);
     }
@@ -34,7 +35,7 @@ function Restaurants() {
 
     useEffect(function () {
         const getRestaurants = async function () {
-            const res = await fetch("http://localhost:3000/restaurants");
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/restaurants");
             const data = await res.json();
             setRestaurants(data);
         }
@@ -50,7 +51,7 @@ function Restaurants() {
             setSearchError("Distance must be a number")
         }
         else {
-            const res = await fetch('http://localhost:3000/restaurants/search', {
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + '/restaurants/search', {
                 method: 'POST',
                 credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
@@ -73,7 +74,9 @@ function Restaurants() {
     }
 
 
-    return (
+    return (<>
+        <Map restaurants={restaurants} userLocation={[latitude, longitude]} className={"shadow"} />
+
         <div className="container">
 
             <div className="jumbotron jumbotron-fluid dataContainer text-center shadow-sm">
@@ -112,7 +115,7 @@ function Restaurants() {
 
 
         </div>
-    )
+    </>)
 
 
 }

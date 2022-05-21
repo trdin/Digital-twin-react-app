@@ -23,10 +23,10 @@ function StudentWork() {
 
 
     const getLocation = function () {
-        console.log(longitude)
+        // console.log(longitude)
         navigator.geolocation.getCurrentPosition(function (position) {
             setLongitude(position.coords.longitude)
-            console.log(longitude)
+            // console.log(longitude)
             setLatitude(position.coords.latitude)
         });
     }
@@ -36,7 +36,7 @@ function StudentWork() {
 
     useEffect(function () {
         const getWork = async function () {
-            const res = await fetch("http://localhost:3000/studentWork");
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/studentWork");
             const data = await res.json();
             setWork(data);
         }
@@ -113,13 +113,10 @@ function StudentWork() {
 
 
                 </div>
-            </div>
-            <div className="row">
-                {work.map(workEl => (<WorkFrame work={workEl} key={workEl._id}></WorkFrame>))}
-            </div>
 
 
-        </div>
+            </div>
+        </>
     )
 
 

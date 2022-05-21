@@ -9,11 +9,7 @@ function BarFrame(props) {
                     <h6>{bar.address}</h6>
                 </div>
             </div>
-
-        </div >
-
+        </div>
     )
-
-
 }
 export default BarFrame;

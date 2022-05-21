@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import BarFrame from '../components/BarFrame';
+import BarFrame from '../components/frames/BarFrame';
 
 
 function getWindowDimensions() {
@@ -17,20 +17,27 @@ function Bars() {
     const [distance, setDiscance] = useState('');
     const [longitude, setLongitude] = useState(0);
     const [latitude, setLatitude] = useState(0);
-    const [payFrom, setPayFrom] = useState('');
-    const [payTo, setPayTo] = useState('');
     const [searchError, setSearchError] = useState('');
 
 
     const getLocation = function () {
-        console.log(longitude)
         navigator.geolocation.getCurrentPosition(function (position) {
             setLongitude(position.coords.longitude)
-            console.log(longitude)
             setLatitude(position.coords.latitude)
         });
     }
     getLocation();
+
+    async function clearParams() {
+
+        setSearch("")
+        setDiscance("");
+        setSearchError("");
+        const res = await fetch("http://localhost:3000/bars");
+        const data = await res.json();
+        setBars(data);
+    }
+
 
 
 
@@ -64,8 +71,10 @@ function Bars() {
                 })
             }).catch(errror => { console.error(errror); });
             const data = await res.json();
-            if (data != undefined) {
+            if (data[0] != undefined) {
                 setBars(data);
+            } else {
+                setBars([]);
             }
             setSearchError("")
         }
@@ -79,21 +88,22 @@ function Bars() {
                 <div className="container">
                     <form onSubmit={Search} className="form-inline my-2 my-lg-0">
                         <div className="form-group">
-                            <input className="form-control mr-sm-2" type="search" name="search" placeholder="Search by type" aria-label="Search" value={search} onChange={(e) => setSearch(e.target.value)} />
+                            <input className="form-control mr-sm-2 mb-2" type="search" name="search" placeholder="Search by type" aria-label="Search" value={search} onChange={(e) => setSearch(e.target.value)} />
                         </div>
                         <div className="form-group">
                             {
                                 longitude == 0 && latitude == 0 ?
-                                    <input className="form-control mr-sm-2" type="search" name="location" placeholder="Enable location" aria-label="Enable location" disabled />
+                                    <input className="form-control mr-sm-2 mb-2" type="search" name="location" placeholder="Enable location" aria-label="Enable location" disabled />
                                     :
-                                    <input className="form-control mr-sm-2" type="search" name="location" placeholder="Input distance" aria-label="Search" value={distance} onChange={(e) => { setDiscance(e.target.value) }} />
+                                    <input className="form-control mr-sm-2 mb-2" type="search" name="location" placeholder="Input distance" aria-label="Search" value={distance} onChange={(e) => { setDiscance(e.target.value) }} />
 
                             }
                         </div>
                         <div className="form-group">
-                            <button className="btn btn-success my-2 my-sm-0" type="submit" >Search by Name</button>
+                            <button className="btn btn-success mb-2" type="submit" >Search by Name</button>
                         </div>
                     </form>
+                    <button className="btn btn-danger mt-2" onClick={clearParams}>Clear Parameters</button>
                     {searchError != "" ?
                         <div className="alert alert-danger mt-3" role="alert">
                             {searchError}

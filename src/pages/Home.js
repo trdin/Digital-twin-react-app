@@ -11,7 +11,6 @@ function Home() {
     }
     getLocation();
 
-    //TODO do map
     return (<>
 
         <div className="container" style={{ border: '2px solid red', "height": "20rem" }}></div>

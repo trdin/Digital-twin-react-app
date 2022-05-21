@@ -9,6 +9,9 @@ import Logout from "./components/Logout";
 import Home from "./pages/Home";
 import StudentWork from "./pages/StudentWork";
 import Bars from "./pages/Bars";
+import Restaurants from "./pages/Restaurants";
+import Events from "./pages/Events";
+import Wifis from "./pages/Wifis";
 function App() {
 
   const [user, setUser] = useState(localStorage.user ? JSON.parse(localStorage.user) : null);
@@ -37,6 +40,9 @@ function App() {
             <Route path="/logout" element={<Logout />}></Route>
             <Route path="/studentWork" element={<StudentWork />}></Route>
             <Route path="/bars" element={<Bars />}></Route>
+            <Route path="/restaurants" element={<Restaurants />}></Route>
+            <Route path="/events" element={<Events />}></Route>
+            <Route path="/wifis" element={<Wifis />}></Route>
           </Routes>
 
         </div>

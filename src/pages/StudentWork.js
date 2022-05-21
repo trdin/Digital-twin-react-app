@@ -55,7 +55,7 @@ function StudentWork() {
         } else if (isNaN(payTo) && payTo != "") {
             setSearchError("pay to must be a number")
         } else {
-            const res = await fetch('http://localhost:3000/studentWork/search', {
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/studentWork/search", {
                 method: 'POST',
                 credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
@@ -110,13 +110,12 @@ function StudentWork() {
                         </div>
                         : ""
                     }
-
-
                 </div>
-
-
             </div>
-        </>
+            <div className="row">
+                {work.map(workEl => (<WorkFrame work={workEl} key={workEl._id}></WorkFrame>))}
+            </div>
+        </div>
     )
 
 

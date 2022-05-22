@@ -13,6 +13,8 @@ import Bars from "./pages/Bars";
 import Restaurants from "./pages/Restaurants";
 import Events from "./pages/Events";
 import Wifis from "./pages/Wifis";
+import Dorms from "./pages/Dorms";
+import Faculties from "./pages/Faculties";
 import WifiDetails from "./pages/WifiDetails";
 function App() {
 
@@ -46,8 +48,9 @@ function App() {
             <Route path="/restaurants" element={<Restaurants />}></Route>
             <Route path="/events" element={<Events />}></Route>
             <Route path="/wifis" element={<Wifis />}></Route>
+            <Route path="/dorms" element={<Dorms />}></Route>
+            <Route path="/faculties" element={<Faculties />}></Route>
             <Route path="/wifiDetails/:id" element={<WifiDetails />}></Route>
-
           </Routes>
 
         </div>

@@ -51,7 +51,7 @@ function Register() {
             setEmail("");
             setError("Registration failed");
         }
-        window.location.href = "/";
+        window.location.href = "/login";
         setError("")
     }
 
@@ -77,7 +77,7 @@ function Register() {
                                     <input type="password" className="form-control" name="repeat-password" placeholder="Repeat Password" value={repPassword} onChange={(e) => (setRepPassword(e.target.value))} />
                                 </div>
                                 <div className="form-group">
-                                    <Button text="Login" />
+                                    <Button text="Register" />
                                 </div>
 
                                 {error !== "" ? <label className="alert alert-danger">{error}</label> : ""}

@@ -55,7 +55,7 @@ function Login() {
                                         value={password} onChange={(e) => (setPassword(e.target.value))} required />
                                 </div>
                                 <div className="form-group">
-                                    <Button text="Prijavi" onClick={Login} />
+                                    <Button text="Login" onClick={Login} />
                                 </div>
                                 {error !== "" ? <label className="alert alert-danger">{error}</label> : ""}
                             </form>

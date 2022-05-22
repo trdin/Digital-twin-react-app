@@ -1,8 +1,21 @@
-import Button from "./Button"
+import { useEffect, useState } from 'react';
+// import Button from "./Button"
 import { Link } from "react-router-dom";
 import { UserContext } from "../userContext";
 
 function Header(props) {
+    // console.log(UserContext)
+
+    const [isAdmin, setIsAdmin] = useState({});
+    useEffect(function () {
+        const getIsAdmin = async function () {
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/users/profile", { credentials: "include" });
+            const data = await res.json();
+            setIsAdmin(data.admin);
+            // console.log(isAdmin);
+        }
+        getIsAdmin();
+    }, []);
     return (
         <>
 
@@ -25,7 +38,8 @@ function Header(props) {
                             {context => (
                                 context.user ?
                                     <>
-                                        <li className="nav-item"><Link className="nav-link" to='/'>NOT YET</Link></li>
+                                        {!isAdmin ? "" :
+                                        <li className="nav-item"><Link className="nav-link" to='/admin'>Administrator Panel</Link></li>}
                                         <li className="nav-item"><Link className="nav-link" to='/profile'>Profile</Link></li>
                                         <li className="nav-item"><Link className="nav-link" to='/logout'>Logout</Link></li>
                                     </>
@@ -42,4 +56,4 @@ function Header(props) {
         </>
     )
 }
-export default Header
+export default Header;

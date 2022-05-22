@@ -3,13 +3,13 @@ import BarFrame from '../components/frames/BarFrame';
 import Map from '../components/Map';
 
 
-function getWindowDimensions() {
-    const { innerWidth: width, innerHeight: height } = window;
-    return {
-        width,
-        height
-    };
-}
+// function getWindowDimensions() {
+//     const { innerWidth: width, innerHeight: height } = window;
+//     return {
+//         width,
+//         height
+//     };
+// }
 
 function Bars() {
 
@@ -56,7 +56,7 @@ function Bars() {
 
         getLocation();
 
-        if (isNaN(distance) && distance != "") {
+        if (isNaN(distance) && distance !== "") {
             setSearchError("Distance must be a number")
         }
         else {
@@ -72,7 +72,7 @@ function Bars() {
                 })
             }).catch(errror => { console.error(errror); });
             const data = await res.json();
-            if (data[0] != undefined) {
+            if (data[0] !== undefined) {
                 setBars(data);
             } else {
                 setBars([]);
@@ -96,7 +96,7 @@ function Bars() {
                             </div>
                             <div className="form-group">
                                 {
-                                    longitude == 0 && latitude == 0 ?
+                                    longitude === 0 && latitude === 0 ?
                                         <input className="form-control mr-sm-2 mb-2" type="search" name="location" placeholder="Enable location" aria-label="Enable location" disabled />
                                         :
                                         <input className="form-control mr-sm-2 mb-2" type="search" name="location" placeholder="Input distance" aria-label="Search" value={distance} onChange={(e) => { setDiscance(e.target.value) }} />
@@ -108,7 +108,7 @@ function Bars() {
                             </div>
                         </form>
                         <button className="btn btn-danger mt-2" onClick={clearParams}>Clear Parameters</button>
-                        {searchError != "" ?
+                        {searchError !== "" ?
                             <div className="alert alert-danger mt-3" role="alert">
                                 {searchError}
                             </div>

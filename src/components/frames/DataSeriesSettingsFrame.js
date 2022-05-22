@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-function BarFrame(props) {
+function DataSeriesSettingsFrame(props) {
     var dataSeries = props.dataSeries;
     async function Update(e) {
         e.preventDefault();
@@ -18,8 +18,9 @@ function BarFrame(props) {
             })
         }).catch(errror => { console.error(errror); });
         const data = await res.json();
-        if (data[0] !== undefined) {
-            setPutError(data)
+        if (data === undefined || data._id === undefined) {
+            console.error(data || "unknown error")
+            setPutError("Error")
         } else {
             setPutSuccess("Success")
         }
@@ -30,8 +31,10 @@ function BarFrame(props) {
     const [putError, setPutError] = useState('');
     const [putSuccess, setPutSuccess] = useState('');
 
-    setRefreshRate(dataSeries.settings.refresh_rate)
-    setPriority(dataSeries.settings.priority)
+    useEffect(function () {
+        setRefreshRate(dataSeries.settings.refresh_rate)
+        setPriority(dataSeries.settings.priority)
+    }, [dataSeries]);
 
     if (dataSeries === undefined)
         return <></>
@@ -44,7 +47,7 @@ function BarFrame(props) {
                         <div className="container">
                             <div className="row justify-content-center">
                                 <div className="form-group d-flex flex-column align-items-baseline flex">
-                                    <label className="label default-label pl-2">Priotity</label>
+                                    <label className="label default-label pl-2">Priority</label>
                                     <input className="form-control" type="text" name="priority" placeholder="priority" aria-label="priority" value={priority} onChange={(e) => setPriority(e.target.value)} />
                                 </div>
                                 <div className="form-group d-flex flex-column align-items-baseline flex">
@@ -65,11 +68,10 @@ function BarFrame(props) {
                         <div className="alert alert-success mt-3" role="alert">
                             {putSuccess}
                         </div>
-
                     }
                 </div>
             </div>
         </div>
     )
 }
-export default BarFrame;
+export default DataSeriesSettingsFrame;

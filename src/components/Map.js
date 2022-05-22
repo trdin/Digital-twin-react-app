@@ -63,7 +63,6 @@ let WifisIcon = L.icon({
     popupAnchor: customIconPopupAnchor
 });
 L.Marker.prototype.options.icon = DefaultIcon;
-
 function Map(props) {
     const initViewPos = [46.558, 15.647]
     const initZoom = 15

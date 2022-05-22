@@ -4,12 +4,14 @@ function Jumbotron(props) {
         return <></>
     } else {
         return (
-            <div className={`jumbotron text-${props.textColor} rounded-0 mb-0 ${props.bgcolor}`}>
+            <div className={`jumbotron text-${props.textColor} rounded-0 mb-0 ${props.bgcolor} ${props.className}`}>
                 <div className={`container text-${props.textOrient}`}>
-                    <h1 className="display-4">{props.title}</h1>
+                    {(props.title === undefined) ? "" :
+                        <h1 className="display-4">{props.title}</h1>
+                    }
                     {(props.description === undefined) ? "" :
 
-                    <p className="lead">{props.description}</p>
+                        <p className="lead">{props.description}</p>
                     }
                     {(props.prompt === undefined && props.url === undefined) ? "" :
                         <hr className="my-4" />

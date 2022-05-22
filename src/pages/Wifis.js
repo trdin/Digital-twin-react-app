@@ -84,7 +84,7 @@ function Wifis() {
         <Map wifis={wifis} userLocation={[latitude, longitude]} className={"shadow"} />
 
         <div className="container">
-
+1
             <div className="jumbotron jumbotron-fluid dataContainer text-center shadow-sm">
                 <div className="container">
                     <form onSubmit={Search} className="form-inline my-2 my-lg-0">
@@ -116,7 +116,7 @@ function Wifis() {
                 </div>
             </div>
             <div className="row">
-                {wifis.map(wifi => (<WifiFrame wifi={wifi} key={wifi._id}></WifiFrame>))}
+                {wifis.map(wifi => (<WifiFrame wifi={wifi} key={wifi.wifi._id}></WifiFrame>))}
             </div>
 
 

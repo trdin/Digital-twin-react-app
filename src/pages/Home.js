@@ -46,7 +46,7 @@ function Home() {
     }, []);
     useEffect(function () {
         const getFaculties = async function () {
-            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/faculty");
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/faculties");
             const data = await res.json();
             setFaculties(data);
         }

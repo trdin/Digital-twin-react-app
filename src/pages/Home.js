@@ -10,7 +10,7 @@ function Home() {
     const [events, setEevents] = useState([]);
     const [faculties, setFaculties] = useState([]);
     const [restaurants, setRestaurants] = useState([]);
-    const [wifi, setWifi] = useState([]);
+    const [wifis, setWifis] = useState([]);
 
 
     useEffect(function () {
@@ -66,7 +66,7 @@ function Home() {
         const getWifi = async function () {
             const res = await fetch(process.env.REACT_APP_mainAPIurl + "/wifi/wifiSpeeds");
             const data = await res.json();
-            setWifi(data);
+            setWifis(data);
         }
         getWifi()
     }, []);

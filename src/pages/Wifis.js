@@ -86,8 +86,7 @@ function Wifis() {
             setSearchError("")
         }
     }
-    return (<>
-        <Map wifis={wifis} userLocation={[latitude, longitude]} className={"shadow"} />
+
 
     const addWifi = async function (e) {
         e.preventDefault()
@@ -149,7 +148,8 @@ function Wifis() {
         }
     }
 
-    return (
+    return (<>
+        <Map wifis={wifis} userLocation={[latitude, longitude]} className={"shadow"} />
         <div className="container">
 
             <div className="jumbotron jumbotron-fluid dataContainer text-center shadow-sm">
@@ -234,6 +234,7 @@ function Wifis() {
                 {wifis.map(wifi => (<WifiFrame wifi={wifi} key={wifi._id}></WifiFrame>))}
             </div>
         </div >
+    </>
     )
 
 

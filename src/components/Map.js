@@ -65,8 +65,8 @@ let WifisIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 function Map(props) {
-    const initViewPos = [46.5537, 15.64]
-    const initZoom = 14
+    const initViewPos = [46.558, 15.647]
+    const initZoom = 15
     if (props === undefined) {
         console.log("Props undefined, drawing empty map");
         return <>
@@ -77,7 +77,6 @@ function Map(props) {
             </MapContainer>
         </>
     } else {
-        console.log(props.wifis);
         return (
             <MapContainer className={props.className} center={initViewPos} zoom={initZoom} scrollWheelZoom={true} attributionControl={false}>
                 <TileLayer

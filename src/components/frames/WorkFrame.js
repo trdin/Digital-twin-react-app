@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 function WorkFrame(props) {
     var work = props.work;
     return (
@@ -8,7 +6,7 @@ function WorkFrame(props) {
                 <div className="container">
                     <h5 className="text-center" style={{ height: 50 }}>{work.type}</h5>
                     {work.subType ? <h6>{work.subType}</h6> : ""}
-                    {work.payNET != 0 ? <h6>Urna postavka: {work.payNET}(bruto: {work.payGROSS})</h6> : <h6>Urna postavka po dogovoru</h6>}
+                    {work.payNET !== 0 ? <h6>Urna postavka: {work.payNET}(bruto: {work.payGROSS})</h6> : <h6>Urna postavka po dogovoru</h6>}
 
                     <button className="btn darkBackground text-white mb-3 mt-3" type="button" data-toggle="collapse" data-target={`#collapseExample${work._id}`} aria-expanded="false" aria-controls="collapseExample">
                         Podrobnosti

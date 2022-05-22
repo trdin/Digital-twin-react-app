@@ -7,7 +7,7 @@ function WifiFrame(props) {
                 <div className="container">
                     <h5 className="text-center" style={{ height: 50 }}>{wifi.name}</h5>
                     <h6>{wifi.address}</h6>
-                    {speed == undefined ? <h6>No measurements</h6> :
+                    {speed === undefined ? <h6>No measurements</h6> :
                         <h6>Speed: {speed} Mbps</h6>
                     }
                 </div>

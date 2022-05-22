@@ -79,7 +79,7 @@ function Home() {
 
         <Jumbotron title="Iščeš študentsko Delo !?"
             description="Za tvoje delo poskrbimo mi. Pri nas najdeš najširšo ponudbo študentskega dela iz različnih virov."
-            promp="Poglej si vse ponudbe študentskega dela"
+            prompt="Poglej si vse ponudbe študentskega dela"
             url="/studentWork"
             bgcolor="greenBackground"
             textColor="white"
@@ -87,7 +87,7 @@ function Home() {
         />
         <Jumbotron title="Hello, world!"
             description="This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information."
-            promp="It uses utility classes for typography and spacing to space content out within the larger container."
+            prompt="It uses utility classes for typography and spacing to space content out within the larger container."
             url="/"
             bgcolor="darkBackground"
             textColor="white"
@@ -95,7 +95,7 @@ function Home() {
         />
         <Jumbotron title="Hello, world!"
             description="This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information."
-            promp="It uses utility classes for typography and spacing to space content out within the larger container."
+            prompt="It uses utility classes for typography and spacing to space content out within the larger container."
             url="/"
             bgcolor="secondaryBackground"
             textColor="dark"

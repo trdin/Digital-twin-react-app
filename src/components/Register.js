@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Button from './Button';
-import ReCAPTCHA from "react-google-recaptcha";
+// import ReCAPTCHA from "react-google-recaptcha";
 
 const validateEmail = (email) => {
     return String(email)
@@ -17,9 +17,9 @@ function Register() {
     const [email, setEmail] = useState([]);
     const [error, setError] = useState("");
     //const [ReCaptcha, setReCaptcha] = useState("");
+
     async function Register(e) {
         e.preventDefault();
-        console.log(validateEmail(email))
         if (!validateEmail(email)) {
             setError("Please use a valid email")
             return
@@ -28,7 +28,7 @@ function Register() {
             setError("Password must be at least 6 characters long")
             return
         }
-        if (password != repPassword) {
+        if (password !== repPassword) {
             setError("Passwords do not match")
             return
         }
@@ -79,7 +79,7 @@ function Register() {
                                     <Button text="Login" />
                                 </div>
 
-                                {error != "" ? <label className="alert alert-danger">{error}</label> : ""}
+                                {error !== "" ? <label className="alert alert-danger">{error}</label> : ""}
 
                             </form>
                         </div>

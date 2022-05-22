@@ -2,6 +2,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../userContext';
 import WifiFrame from '../components/frames/WifiFrame';
+import Map from '../components/Map';
 const Syncfetch = require('sync-fetch')
 
 

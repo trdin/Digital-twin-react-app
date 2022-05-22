@@ -23,10 +23,10 @@ function Dorms() {
         }
         getFaculties();
     }, []);
-
+    console.log(faculties);
     return (
         <>
-            <Map bars={faculties} userLocation={[latitude, longitude]} className={"shadow mb-4"} />
+            <Map faculties={faculties} userLocation={[latitude, longitude]} className={"shadow mb-4"} />
             <div className="container">
                 <div className="row">
                     {faculties.map(faculty => (<FacultyFrame faculty={faculty} key={faculty._id}/>))}

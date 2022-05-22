@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../userContext';
 import { Navigate } from 'react-router-dom';
+import Jumbotron from './Jumbotron';
 
 function Profile() {
     const userContext = useContext(UserContext);
@@ -17,10 +18,31 @@ function Profile() {
     return (
         <>
             {!userContext.user ? <Navigate replace to="/login" /> : ""}
-            <h1>User profile</h1>
-            <p>Username: {profile.username}</p>
-            <p>Email: {profile.email}</p>
-            <p>UserID: {profile._id}</p>
+            <Jumbotron title="User profile"
+                bgcolor="greenBackground"
+                textColor="black"
+                textOrient="center"
+            />
+            <div className='container'>
+                <Jumbotron
+                    description={"Username: " + profile.username}
+                    bgcolor="darkBackground"
+                    textColor="white"
+                    textOrient="left"
+                />
+                <Jumbotron
+                    description={"Email: " + profile.email}
+                    bgcolor="whiteBackground"
+                    textColor="black"
+                    textOrient="left"
+                />
+                <Jumbotron
+                    description={"UserID: " + profile._id}
+                    bgcolor="darkBackground"
+                    textColor="white"
+                    textOrient="left"
+                />
+            </div>
         </>
     );
 }

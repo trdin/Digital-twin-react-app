@@ -13,10 +13,10 @@ async function createGraph(wifi) {
         d.value = parseFloat(d.speed);
     });
     var element = d3.select('.graph').node();
-    var width = element.getBoundingClientRect().width;
+    var width_tmp = element.getBoundingClientRect().width;
     // set the dimensions and margins of the graph
     var margin = { top: 20, right: 20, bottom: 50, left: 70 },
-        width = width - margin.left - margin.right,
+        width = width_tmp - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
     // append the svg object to the body of the page
     d3.select('.graph').html("")
@@ -55,11 +55,11 @@ function WifiDetails() {
     let { id } = useParams();
     const [wifi, setWifi] = useState([]);
     const [speed, setSpeed] = useState([]);
-    const [wifiSpeeds, setWifiSpeeds] = useState([]);
-    const [longitude, setLongitude] = useState(0);
-    const [latitude, setLatitude] = useState(0);
+    // const [wifiSpeeds, setWifiSpeeds] = useState([]);
+    // const [longitude, setLongitude] = useState(0);
+    // const [latitude, setLatitude] = useState(0);
     const [speedMessage, setSpeedMessage] = useState('')
-    const [speedMeasurement, setSpeedMeasurement] = useState(0)
+    // const [speedMeasurement, setSpeedMeasurement] = useState(0)
     //refresh
     const [refresh, setRefresh] = useState(0)
 
@@ -75,6 +75,9 @@ function WifiDetails() {
             })
         });
         const data = await res.json();
+        if (data === undefined || data.error !== undefined) {
+            console.error(data || "Unknown error");
+        }
     }
 
     const MeasureConnectionSpeed = () => {
@@ -89,22 +92,16 @@ function WifiDetails() {
             endTime = (new Date()).getTime();
             showResults();
         }
-
         download.onerror = function (err, msg) {
             setSpeedMessage("Invalid image, or error downloading");
         }
-
-        startTime = (new Date()).getTime();
-        var cacheBuster = "?nnn=" + startTime;
-        download.src = imageAddr + cacheBuster;
-
         function showResults() {
             var duration = (endTime - startTime) / 1000;
             var bitsLoaded = downloadSize * 8;
             var speedBps = (bitsLoaded / duration).toFixed(2);
             var speedKbps = (speedBps / 1024).toFixed(2);
             var speedMbps = (speedKbps / 1024).toFixed(2);
-            setSpeedMeasurement(speedMbps)
+            // setSpeedMeasurement(speedMbps)
             setSpeedMessage(
                 "Your connection speed is: " +
                 speedMbps + " Mbps \n"
@@ -114,16 +111,6 @@ function WifiDetails() {
         }
     }
 
-
-    const getLocation = function () {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            setLongitude(position.coords.longitude)
-            setLatitude(position.coords.latitude)
-        });
-    }
-    getLocation();
-
-
     //TODO get wifi speed by id
     useEffect(function () {
         const getWifi = async function () {
@@ -131,13 +118,13 @@ function WifiDetails() {
             const data = await res.json();
             setWifi(data.wifi);
             setSpeed(data.speed)
-            setWifiSpeeds(data.wifiSpeeds)
-            if (data.wifiSpeeds.length != 0) {
+            // setWifiSpeeds(data.wifiSpeeds)
+            if (data.wifiSpeeds.length !== 0) {
                 createGraph(data.wifiSpeeds);
             }
         }
         getWifi();
-    }, [refresh]);
+    }, [refresh, id]);
 
     return (
         <div className="container">
@@ -145,13 +132,13 @@ function WifiDetails() {
             <div className="jumbotron jumbotron-fluid dataContainer text-center shadow-sm">
                 <div className="container">
                     <h2>{wifi.name}</h2>
-                    {speed == undefined ? <h4>No measurements</h4> :
+                    {speed === undefined ? <h4>No measurements</h4> :
                         <h4>Speed: {speed} Mbps</h4>
                     }
                     {userContext.user ?
                         <>
                             <button onClick={MeasureConnectionSpeed} className="btn darkBackground text-white w-75 mx-auto"> Measure Internet Speed</button>
-                            {speedMessage != "" ? <h6 className="mt-2">{speedMessage}</h6> : ""}
+                            {speedMessage !== "" ? <h6 className="mt-2">{speedMessage}</h6> : ""}
                         </>
                         : ""}
                     <div className="graph" ></div>

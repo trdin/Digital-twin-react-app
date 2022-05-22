@@ -97,7 +97,7 @@ function Wifis() {
         var prevAtribute = undefined
 
         array.forEach(attribute => {
-            if (attribute.length == 1 && isNaN(attribute) && !isNaN(prevAtribute)) { // checking if adreess has a number and ther is a space before it i should be 8a but is 8 a
+            if (attribute.length === 1 && isNaN(attribute) && !isNaN(prevAtribute)) { // checking if adreess has a number and ther is a space before it i should be 8a but is 8 a
                 street = street.slice(0, -1)//removing the +
                 street += attribute + "+"
             } else {
@@ -108,7 +108,7 @@ function Wifis() {
         var data = Syncfetch(process.env.REACT_APP_nominatimAPIurl + `/search.php?street=${street}&city=maribor&format=jsonv2`)
 
         var location = data.json()
-        if (location == undefined || location.length == 0) {
+        if (location === undefined || location.length === 0) {
             setWifiAddMessage({
                 err: true,
                 message: "Adress not valid"
@@ -128,7 +128,7 @@ function Wifis() {
                 })
             }).catch(errror => { console.error(errror); });
             const data = await res.json();
-            if (data._id != undefined) {
+            if (data._id !== undefined) {
                 setWifiAddMessage({
                     err: false,
                     message: "Added wifi successfuly"
@@ -151,7 +151,6 @@ function Wifis() {
     return (<>
         <Map wifis={wifis} userLocation={[latitude, longitude]} className={"shadow"} />
         <div className="container">
-1
             <div className="jumbotron jumbotron-fluid dataContainer text-center shadow-sm">
                 <div className="container">
                     <form onSubmit={Search} className="form-inline my-2 my-lg-0">
@@ -215,7 +214,7 @@ function Wifis() {
                                         </div>
                                     </form>
 
-                                    {wifiAddMessage != '' ?
+                                    {wifiAddMessage !== '' ?
                                         <div className="pr-5 pl-5">
                                             <div className={`alert alert-${wifiAddMessage.err ? "danger" : "success"}`} role="alert">
                                                 {wifiAddMessage.message}

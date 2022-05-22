@@ -26,7 +26,7 @@ function Dorms() {
 
     return (
         <>
-            <Map bars={dorms} userLocation={[latitude, longitude]} className={"shadow mb-4"} />
+            <Map dorms={dorms} userLocation={[latitude, longitude]} className={"shadow mb-4"} />
             <div className="container">
                 <div className="row">
                     {dorms.map(dorm => (<DormFrame dorm={dorm} key={dorm._id}/>))}

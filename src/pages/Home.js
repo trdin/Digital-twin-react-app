@@ -10,16 +10,18 @@ function Home() {
     const [events, setEevents] = useState([]);
     const [faculties, setFaculties] = useState([]);
     const [restaurants, setRestaurants] = useState([]);
-    const [wifis, setWifi] = useState([]);
-    
+    const [wifi, setWifi] = useState([]);
+
+
     useEffect(function () {
         const getWork = async function () {
             const res = await fetch(process.env.REACT_APP_mainAPIurl + "/studentWork");
             const data = await res.json();
-            setWork(data);
+            setWork(data)
         }
         getWork()
     }, []);
+
     useEffect(function () {
         const getBars = async function () {
             const res = await fetch(process.env.REACT_APP_mainAPIurl + "/bars");
@@ -85,17 +87,17 @@ function Home() {
             textColor="white"
             textOrient="left"
         />
-        <Jumbotron title="Hello, world!"
-            description="This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information."
-            prompt="It uses utility classes for typography and spacing to space content out within the larger container."
+        <Jumbotron title="Si lačen ? "
+            description="Poišči restavracije v svoji bližini"
+            promp=""
             url="/"
             bgcolor="darkBackground"
             textColor="white"
             textOrient="right"
         />
-        <Jumbotron title="Hello, world!"
-            description="This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information."
-            prompt="It uses utility classes for typography and spacing to space content out within the larger container."
+        <Jumbotron title="Grema na kavo ?"
+            description="Poišči kavarne v svoji bližini"
+            promp=""
             url="/"
             bgcolor="secondaryBackground"
             textColor="dark"

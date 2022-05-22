@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { UserContext } from "./userContext";
 import Header from "./components/Header";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
 import Logout from "./components/Logout";
+import AdminPanel from "./pages/AdminPanel";
 import Home from "./pages/Home";
 import StudentWork from "./pages/StudentWork";
 import Bars from "./pages/Bars";
@@ -39,6 +40,7 @@ function App() {
             <Route path="/register" element={<Register />}></Route>
             <Route path="/profile" element={<Profile />}></Route>
             <Route path="/logout" element={<Logout />}></Route>
+            <Route path="/admin" element={<AdminPanel />}></Route>
             <Route path="/studentWork" element={<StudentWork />}></Route>
             <Route path="/bars" element={<Bars />}></Route>
             <Route path="/restaurants" element={<Restaurants />}></Route>

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect} from 'react';
 import { UserContext } from '../userContext';
 import { Navigate } from 'react-router-dom';
 import Button from './Button'
@@ -8,6 +8,11 @@ function Login() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const userContext = useContext(UserContext);
+
+    useEffect(function () {
+        // setUsername("user1");
+        // setPassword("123456");
+    })
 
     async function Login(e) {
         e.preventDefault();
@@ -21,6 +26,7 @@ function Login() {
             })
         });
         const data = await res.json();
+        // console.log(data);
         if (data._id !== undefined) {
             userContext.setUserContext(data);
         } else {
@@ -51,7 +57,7 @@ function Login() {
                                 <div className="form-group">
                                     <Button text="Prijavi" onClick={Login} />
                                 </div>
-                                {error != "" ? <label className="alert alert-danger">{error}</label> : ""}
+                                {error !== "" ? <label className="alert alert-danger">{error}</label> : ""}
                             </form>
                         </div>
                     </div >

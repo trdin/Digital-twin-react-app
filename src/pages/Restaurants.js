@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import RestaurantFrame from '../components/frames/RestaurantFrame';
+import Map from '../components/Map';
 
 function Restaurants() {
 
@@ -24,7 +25,7 @@ function Restaurants() {
         setSearch("")
         setDiscance("");
         setSearchError("");
-        const res = await fetch("http://localhost:3000/restaurants");
+        const res = await fetch(process.env.REACT_APP_mainAPIurl + "/restaurants");
         const data = await res.json();
         setRestaurants(data);
     }
@@ -34,7 +35,7 @@ function Restaurants() {
 
     useEffect(function () {
         const getRestaurants = async function () {
-            const res = await fetch("http://localhost:3000/restaurants");
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/restaurants");
             const data = await res.json();
             setRestaurants(data);
         }
@@ -46,7 +47,7 @@ function Restaurants() {
 
         getLocation();
 
-        if (isNaN(distance) && distance != "") {
+        if (isNaN(distance) && distance !== "") {
             setSearchError("Distance must be a number")
         }
         else {
@@ -62,7 +63,7 @@ function Restaurants() {
                 })
             }).catch(errror => { console.error(errror); });
             const data = await res.json();
-            if (data[0] != undefined) {
+            if (data[0] !== undefined) {
                 setRestaurants(data);
             } else {
                 setRestaurants([]);
@@ -73,7 +74,9 @@ function Restaurants() {
     }
 
 
-    return (
+    return (<>
+        <Map restaurants={restaurants} userLocation={[latitude, longitude]} className={"shadow"} />
+
         <div className="container">
 
             <div className="jumbotron jumbotron-fluid dataContainer text-center shadow-sm">
@@ -84,7 +87,7 @@ function Restaurants() {
                         </div>
                         <div className="form-group">
                             {
-                                longitude == 0 && latitude == 0 ?
+                                longitude === 0 && latitude === 0 ?
                                     <input className="form-control mr-sm-2 mb-2" type="search" name="location" placeholder="Enable location" aria-label="Enable location" disabled />
                                     :
                                     <input className="form-control mr-sm-2 mb-2" type="search" name="location" placeholder="Input distance" aria-label="Search" value={distance} onChange={(e) => { setDiscance(e.target.value) }} />
@@ -96,7 +99,7 @@ function Restaurants() {
                         </div>
                     </form>
                     <button className="btn btn-danger mt-2" onClick={clearParams}>Clear Parameters</button>
-                    {searchError != "" ?
+                    {searchError !== "" ?
                         <div className="alert alert-danger mt-3" role="alert">
                             {searchError}
                         </div>
@@ -112,7 +115,7 @@ function Restaurants() {
 
 
         </div>
-    )
+    </>)
 
 
 }

@@ -11,7 +11,6 @@ function Profile() {
             const res = await fetch(process.env.REACT_APP_mainAPIurl + "/users/profile", { credentials: "include" });
             const data = await res.json();
             setProfile(data);
-            console.log(data)
         }
         getProfile();
     }, []);
@@ -19,10 +18,9 @@ function Profile() {
         <>
             {!userContext.user ? <Navigate replace to="/login" /> : ""}
             <h1>User profile</h1>
-            <p>Username: {profile.user?.username}</p>
-            <p>Email: {profile.user?.email}</p>
-            <p>Number of Photos posted: {profile.photosNum}</p>
-            <p>Number of likes recieved: {profile.likesNum}</p>
+            <p>Username: {profile.username}</p>
+            <p>Email: {profile.email}</p>
+            <p>UserID: {profile._id}</p>
         </>
     );
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import EventFrame from '../components/frames/EventFrame';
+import Map from '../components/Map';
 
 function Events() {
 
@@ -24,7 +25,7 @@ function Events() {
         setSearch("")
         setDiscance("");
         setSearchError("");
-        const res = await fetch("http://localhost:3000/events");
+        const res = await fetch(process.env.REACT_APP_mainAPIurl + "/events");
         const data = await res.json();
         setEvents(data);
     }
@@ -34,7 +35,7 @@ function Events() {
 
     useEffect(function () {
         const getEvents = async function () {
-            const res = await fetch("http://localhost:3000/events");
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/events");
             const data = await res.json();
             setEvents(data);
         }
@@ -46,7 +47,7 @@ function Events() {
 
         getLocation();
 
-        if (isNaN(distance) && distance != "") {
+        if (isNaN(distance) && distance !== "") {
             setSearchError("Distance must be a number")
         }
         else {
@@ -62,7 +63,7 @@ function Events() {
                 })
             }).catch(errror => { console.error(errror); });
             const data = await res.json();
-            if (data[0] != undefined) {
+            if (data[0] !== undefined) {
                 setEvents(data);
             } else {
                 setEvents([]);
@@ -73,9 +74,11 @@ function Events() {
     }
 
 
-    return (
+    return (<>
+        <Map events={events} userLocation={[latitude, longitude]} className={"shadow"} />
+
         <div className="container">
-            <i class="fa-solid fa-calendar-days"></i>
+            <i className="fa-solid fa-calendar-days"></i>
             <div className="jumbotron jumbotron-fluid dataContainer text-center shadow-sm">
                 <div className="container">
                     <form onSubmit={Search} className="form-inline my-2 my-lg-0">
@@ -84,7 +87,7 @@ function Events() {
                         </div>
                         <div className="form-group">
                             {
-                                longitude == 0 && latitude == 0 ?
+                                longitude === 0 && latitude === 0 ?
                                     <input className="form-control mr-sm-2 mb-2" type="search" name="location" placeholder="Enable location" aria-label="Enable location" disabled />
                                     :
                                     <input className="form-control mr-sm-2 mb-2" type="search" name="location" placeholder="Input distance" aria-label="Search" value={distance} onChange={(e) => { setDiscance(e.target.value) }} />
@@ -96,7 +99,7 @@ function Events() {
                         </div>
                     </form>
                     <button className="btn btn-danger mt-2" onClick={clearParams}>Clear Parameters</button>
-                    {searchError != "" ?
+                    {searchError !== "" ?
                         <div className="alert alert-danger mt-3" role="alert">
                             {searchError}
                         </div>
@@ -112,7 +115,7 @@ function Events() {
 
 
         </div>
-    )
+    </>)
 
 
 }

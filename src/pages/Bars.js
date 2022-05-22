@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
 import BarFrame from '../components/frames/BarFrame';
+import Map from '../components/Map';
 
 
-function getWindowDimensions() {
-    const { innerWidth: width, innerHeight: height } = window;
-    return {
-        width,
-        height
-    };
-}
+// function getWindowDimensions() {
+//     const { innerWidth: width, innerHeight: height } = window;
+//     return {
+//         width,
+//         height
+//     };
+// }
 
 function Bars() {
 
@@ -33,7 +34,7 @@ function Bars() {
         setSearch("")
         setDiscance("");
         setSearchError("");
-        const res = await fetch("http://localhost:3000/bars");
+        const res = await fetch(process.env.REACT_APP_mainAPIurl + "/bars");
         const data = await res.json();
         setBars(data);
     }
@@ -43,7 +44,7 @@ function Bars() {
 
     useEffect(function () {
         const getBars = async function () {
-            const res = await fetch("http://localhost:3000/bars");
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/bars");
             const data = await res.json();
             setBars(data);
         }
@@ -55,7 +56,7 @@ function Bars() {
 
         getLocation();
 
-        if (isNaN(distance) && distance != "") {
+        if (isNaN(distance) && distance !== "") {
             setSearchError("Distance must be a number")
         }
         else {
@@ -71,7 +72,7 @@ function Bars() {
                 })
             }).catch(errror => { console.error(errror); });
             const data = await res.json();
-            if (data[0] != undefined) {
+            if (data[0] !== undefined) {
                 setBars(data);
             } else {
                 setBars([]);
@@ -82,44 +83,48 @@ function Bars() {
 
 
     return (
-        <div className="container">
+        <>
+            <Map bars={bars} userLocation={[latitude, longitude]} className={"shadow"} />
 
-            <div className="jumbotron jumbotron-fluid dataContainer text-center shadow-sm">
-                <div className="container">
-                    <form onSubmit={Search} className="form-inline my-2 my-lg-0">
-                        <div className="form-group">
-                            <input className="form-control mr-sm-2 mb-2" type="search" name="search" placeholder="Search by type" aria-label="Search" value={search} onChange={(e) => setSearch(e.target.value)} />
-                        </div>
-                        <div className="form-group">
-                            {
-                                longitude == 0 && latitude == 0 ?
-                                    <input className="form-control mr-sm-2 mb-2" type="search" name="location" placeholder="Enable location" aria-label="Enable location" disabled />
-                                    :
-                                    <input className="form-control mr-sm-2 mb-2" type="search" name="location" placeholder="Input distance" aria-label="Search" value={distance} onChange={(e) => { setDiscance(e.target.value) }} />
+            <div className="container">
 
-                            }
-                        </div>
-                        <div className="form-group">
-                            <button className="btn btn-success mb-2" type="submit" >Search by Name</button>
-                        </div>
-                    </form>
-                    <button className="btn btn-danger mt-2" onClick={clearParams}>Clear Parameters</button>
-                    {searchError != "" ?
-                        <div className="alert alert-danger mt-3" role="alert">
-                            {searchError}
-                        </div>
-                        : ""
-                    }
+                <div className="jumbotron jumbotron-fluid dataContainer text-center shadow-sm">
+                    <div className="container">
+                        <form onSubmit={Search} className="form-inline my-2 my-lg-0">
+                            <div className="form-group">
+                                <input className="form-control mr-sm-2 mb-2" type="search" name="search" placeholder="Search by type" aria-label="Search" value={search} onChange={(e) => setSearch(e.target.value)} />
+                            </div>
+                            <div className="form-group">
+                                {
+                                    longitude === 0 && latitude === 0 ?
+                                        <input className="form-control mr-sm-2 mb-2" type="search" name="location" placeholder="Enable location" aria-label="Enable location" disabled />
+                                        :
+                                        <input className="form-control mr-sm-2 mb-2" type="search" name="location" placeholder="Input distance" aria-label="Search" value={distance} onChange={(e) => { setDiscance(e.target.value) }} />
+
+                                }
+                            </div>
+                            <div className="form-group">
+                                <button className="btn btn-success mb-2" type="submit" >Search by Name</button>
+                            </div>
+                        </form>
+                        <button className="btn btn-danger mt-2" onClick={clearParams}>Clear Parameters</button>
+                        {searchError !== "" ?
+                            <div className="alert alert-danger mt-3" role="alert">
+                                {searchError}
+                            </div>
+                            : ""
+                        }
 
 
+                    </div>
                 </div>
-            </div>
-            <div className="row">
-                {bars.map(bar => (<BarFrame bar={bar} key={bar._id}></BarFrame>))}
-            </div>
+                <div className="row">
+                    {bars.map(bar => (<BarFrame bar={bar} key={bar._id}></BarFrame>))}
+                </div>
 
 
-        </div>
+            </div>
+        </>
     )
 
 

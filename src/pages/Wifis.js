@@ -5,13 +5,13 @@ import WifiFrame from '../components/frames/WifiFrame';
 const Syncfetch = require('sync-fetch')
 
 
-function getWindowDimensions() {
-    const { innerWidth: width, innerHeight: height } = window;
-    return {
-        width,
-        height
-    };
-}
+// function getWindowDimensions() {
+//     const { innerWidth: width, innerHeight: height } = window;
+//     return {
+//         width,
+//         height
+//     };
+// }
 
 function Wifis() {
     const userContext = useContext(UserContext);
@@ -40,18 +40,17 @@ function Wifis() {
     getLocation();
 
     async function clearParams() {
-
         setSearch("")
         setDiscance("");
         setSearchError("");
-        const res = await fetch("http://localhost:3000/wifi/wifiSpeeds");
+        const res = await fetch(process.env.REACT_APP_mainAPIurl + "/wifi/wifiSpeeds");
         const data = await res.json();
         setWifis(data);
     }
 
     useEffect(function () {
         const getWifis = async function () {
-            const res = await fetch("http://localhost:3000/wifi/wifiSpeeds");
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/wifi/wifiSpeeds");
             const data = await res.json();
             setWifis(data);
         }
@@ -61,7 +60,8 @@ function Wifis() {
     async function Search(e) {
         e.preventDefault();
         getLocation();
-        if (isNaN(distance) && distance != "") {
+
+        if (isNaN(distance) && distance !== "") {
             setSearchError("Distance must be a number")
         }
         else {
@@ -77,7 +77,7 @@ function Wifis() {
                 })
             }).catch(errror => { console.error(errror); });
             const data = await res.json();
-            if (data[0] != undefined) {
+            if (data[0] !== undefined) {
                 setWifis(data);
             } else {
                 setWifis([]);
@@ -85,6 +85,8 @@ function Wifis() {
             setSearchError("")
         }
     }
+    return (<>
+        <Map wifis={wifis} userLocation={[latitude, longitude]} className={"shadow"} />
 
     const addWifi = async function (e) {
         e.preventDefault()
@@ -157,7 +159,7 @@ function Wifis() {
                         </div>
                         <div className="form-group">
                             {
-                                longitude == 0 && latitude == 0 ?
+                                longitude === 0 && latitude === 0 ?
                                     <input className="form-control mr-sm-2 mb-2" type="search" name="location" placeholder="Enable location" aria-label="Enable location" disabled />
                                     :
                                     <input className="form-control mr-sm-2 mb-2" type="search" name="location" placeholder="Input distance" aria-label="Search" value={distance} onChange={(e) => { setDiscance(e.target.value) }} />
@@ -169,7 +171,7 @@ function Wifis() {
                         </div>
                     </form>
                     <button className="btn btn-danger mt-2" onClick={clearParams}>Clear Parameters</button>
-                    {searchError != "" ?
+                    {searchError !== "" ?
                         <div className="alert alert-danger mt-3" role="alert">
                             {searchError}
                         </div>

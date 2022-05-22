@@ -6,7 +6,7 @@ function Header(props) {
     return (
         <>
 
-            <nav className="navbar navbar-expand-lg sticky-top navbar-dark darkBackground">
+            <nav className="navbar navbar-expand-lg sticky-top navbar-dark darkBackground align-items-baseline">
                 <a className="navbar-brand" href="/">SMLTG</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +25,6 @@ function Header(props) {
                             {context => (
                                 context.user ?
                                     <>
-                                        <li className="nav-item"><Link className="nav-link" to='/'>NOT YET</Link></li>
                                         <li className="nav-item"><Link className="nav-link" to='/profile'>Profile</Link></li>
                                         <li className="nav-item"><Link className="nav-link" to='/logout'>Logout</Link></li>
                                     </>

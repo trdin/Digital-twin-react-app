@@ -27,6 +27,7 @@ function Login() {
             setUsername("");
             setPassword("");
             setError("Invalid username or password");
+            console.log(data)
         }
     }
 

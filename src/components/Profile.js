@@ -15,7 +15,6 @@ function Profile() {
         }
         getProfile();
     }, []);
-
     return (
         <>
             {!userContext.user ? <Navigate replace to="/login" /> : ""}

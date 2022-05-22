@@ -12,6 +12,7 @@ import Bars from "./pages/Bars";
 import Restaurants from "./pages/Restaurants";
 import Events from "./pages/Events";
 import Wifis from "./pages/Wifis";
+import WifiDetails from "./pages/WifiDetails";
 function App() {
 
   const [user, setUser] = useState(localStorage.user ? JSON.parse(localStorage.user) : null);
@@ -43,6 +44,8 @@ function App() {
             <Route path="/restaurants" element={<Restaurants />}></Route>
             <Route path="/events" element={<Events />}></Route>
             <Route path="/wifis" element={<Wifis />}></Route>
+            <Route path="/wifiDetails/:id" element={<WifiDetails />}></Route>
+
           </Routes>
 
         </div>

@@ -11,15 +11,17 @@ function Home() {
     const [faculties, setFaculties] = useState([]);
     const [restaurants, setRestaurants] = useState([]);
     const [wifi, setWifi] = useState([]);
-    
+
+
     useEffect(function () {
         const getWork = async function () {
             const res = await fetch(process.env.REACT_APP_mainAPIurl + "/studentWork");
             const data = await res.json();
-            setWork(data);
+            setWork(data)
         }
         getWork()
     }, []);
+
     useEffect(function () {
         const getBars = async function () {
             const res = await fetch(process.env.REACT_APP_mainAPIurl + "/bars");

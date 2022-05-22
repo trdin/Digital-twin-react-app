@@ -7,7 +7,7 @@ function Header(props) {
         <>
 
             <nav className="navbar navbar-expand-lg sticky-top navbar-dark darkBackground">
-                <a className="navbar-brand" href="/">Navbar</a>
+                <a className="navbar-brand" href="/">SMLTG</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>

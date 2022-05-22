@@ -65,7 +65,7 @@ function Wifis() {
             setSearchError("Distance must be a number")
         }
         else {
-            const res = await fetch('http://localhost:3000/wifi/search', {
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + '/wifi/search', {
                 method: 'POST',
                 credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
@@ -103,7 +103,7 @@ function Wifis() {
             }
             prevAtribute = attribute
         })
-        var data = Syncfetch(`http://oskardolenc.eu:591/search.php?street=${street}&city=maribor&format=jsonv2`)
+        var data = Syncfetch(process.env.REACT_APP_nominatimAPIurl + `/search.php?street=${street}&city=maribor&format=jsonv2`)
 
         var location = data.json()
         if (location == undefined || location.length == 0) {
@@ -113,7 +113,7 @@ function Wifis() {
             })
         } else {
 
-            const res = await fetch('http://localhost:3000/wifi/userCreate', {
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + '/wifi/userCreate', {
                 method: 'POST',
                 credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },

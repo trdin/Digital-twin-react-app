@@ -50,7 +50,7 @@ function Restaurants() {
             setSearchError("Distance must be a number")
         }
         else {
-            const res = await fetch('http://localhost:3000/restaurants/search', {
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + '/restaurants/search', {
                 method: 'POST',
                 credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },

@@ -114,7 +114,7 @@ function WifiDetails() {
     //TODO get wifi speed by id
     useEffect(function () {
         const getWifi = async function () {
-            const res = await fetch("http://localhost:3000/wifi/" + id);
+            const res = await fetch(process.env.REACT_APP_mainAPIurl + "/wifi/" + id);
             const data = await res.json();
             setWifi(data.wifi);
             setSpeed(data.speed)

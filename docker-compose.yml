@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  node:
+    container_name: reactjs-website
+    restart: always
+    build: ./
+    ports:
+      - '80:3000'
+    environment:
+      REACT_APP_mainAPIurl: "http://oskardolenc.eu:8080/"
+      REACT_APP_nominatimAPIurl: "http://oskardolenc.eu:591/"

@@ -126,11 +126,11 @@ function Map(props) {
 
                 {/* Events */
                     (props.events === undefined) ? "" :
-                        props.events.map(({ location, name }, index) => (
+                        props.events.map(({ location, title }, index) => (
                             (location.coordinates[0] === 0 && location.coordinates[1] === 0) ? "" : (
                                 <Marker position={location.coordinates} icon={EventsIcon} key={"events_marker" + index}>
                                     <Popup>
-                                        {name}
+                                        {title}
                                     </Popup>
                                 </Marker>
                             )

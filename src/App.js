@@ -17,7 +17,6 @@ import Dorms from "./pages/Dorms";
 import Faculties from "./pages/Faculties";
 import WifiDetails from "./pages/WifiDetails";
 function App() {
-  console.log(process.env.REACT_APP_mainAPIurl)
 
   const [user, setUser] = useState(localStorage.user ? JSON.parse(localStorage.user) : null);
   const updateUserData = (userInfo) => {

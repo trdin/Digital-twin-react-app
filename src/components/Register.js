@@ -44,12 +44,12 @@ function Register() {
             })
         });
         const data = await res.json();
-        console.log(data)
         if (data._id === undefined) {
             setUsername("");
             setPassword("");
             setEmail("");
             setError("Registration failed");
+            console.error(data)
         }
         window.location.href = "/login";
         setError("")

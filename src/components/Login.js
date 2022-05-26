@@ -26,14 +26,13 @@ function Login() {
             })
         });
         const data = await res.json();
-        // console.log(data);
         if (data._id !== undefined) {
             userContext.setUserContext(data);
         } else {
             setUsername("");
             setPassword("");
             setError("Invalid username or password");
-            console.log(data)
+            console.error(data)
         }
     }
 

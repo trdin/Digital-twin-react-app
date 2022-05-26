@@ -23,7 +23,6 @@ function Dorms() {
         }
         getFaculties();
     }, []);
-    console.log(faculties);
     return (
         <>
             <Map faculties={faculties} userLocation={[latitude, longitude]} className={"shadow mb-4"} />

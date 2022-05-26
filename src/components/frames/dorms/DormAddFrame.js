@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Syncfetch } from 'sync-fetch'
+const Syncfetch = require('sync-fetch')
 
 function DormFrame(props) {
     async function Add(e) {

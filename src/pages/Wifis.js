@@ -155,14 +155,14 @@ function Wifis() {
                 <div className="container">
                     <form onSubmit={Search} className="form-inline my-2 my-lg-0">
                         <div className="form-group">
-                            <input className="form-control mr-sm-2 mb-2" type="search" name="search" placeholder="Search by type" aria-label="Search" value={search} onChange={(e) => setSearch(e.target.value)} />
+                            <input className="form-control mr-sm-2 mb-2" type="search" name="search" placeholder="Išči po imenu" aria-label="Search" value={search} onChange={(e) => setSearch(e.target.value)} />
                         </div>
                         <div className="form-group">
                             {
                                 longitude === 0 && latitude === 0 ?
-                                    <input className="form-control mr-sm-2 mb-2" type="search" name="location" placeholder="Enable location" aria-label="Enable location" disabled />
+                                    <input className="form-control mr-sm-2 mb-2" type="number" name="location" placeholder="Omogočite lokacijo" aria-label="Omogočite lokacijo" disabled />
                                     :
-                                    <input className="form-control mr-sm-2 mb-2" type="search" name="location" placeholder="Input distance" aria-label="Search" value={distance} onChange={(e) => { setDiscance(e.target.value) }} />
+                                    <input className="form-control mr-sm-2 mb-2" type="number" name="location" placeholder="Vnesite razdaljo" aria-label="Search" value={distance} onChange={(e) => { setDiscance(e.target.value) }} />
 
                             }
                         </div>
@@ -170,7 +170,7 @@ function Wifis() {
                             <button className="btn btn-success mb-2" type="submit" >Search</button>
                         </div>
                     </form>
-                    <button className="btn btn-danger mt-2" onClick={clearParams}>Clear Parameters</button>
+                    <button className="btn btn-danger mt-2" onClick={clearParams}>Počisti parametre</button>
                     {searchError !== "" ?
                         <div className="alert alert-danger mt-3" role="alert">
                             {searchError}
@@ -193,21 +193,21 @@ function Wifis() {
                                             <label>Naslov kjer se nahaja wifi</label>
                                             <div className="row">
                                                 <div className=" col-sm-12 col-md-8">
-                                                    <input className="form-control mb-2" type="search" name="address" placeholder="input street" aria-label="Search" value={wifiStreet} onChange={(e) => setWifiStreet(e.target.value)} required />
+                                                    <input className="form-control mb-2" type="search" name="address" placeholder="Vnesite Ulico" aria-label="Search" value={wifiStreet} onChange={(e) => setWifiStreet(e.target.value)} required />
                                                 </div>
                                                 <div className="col-sm-12 col-md-4">
-                                                    <input className="form-control mr-sm-2 mb-2" type="search" name="address" placeholder="input street number" aria-label="Search" value={wifiStreetNumber} onChange={(e) => setWifiStreetNumber(e.target.value)} required />
+                                                    <input className="form-control mr-sm-2 mb-2" type="search" name="address" placeholder="Vnesite hišno številko" aria-label="Search" value={wifiStreetNumber} onChange={(e) => setWifiStreetNumber(e.target.value)} required />
                                                 </div>
                                             </div>
 
                                         </div>
                                         <div className="form-group">
                                             <label>Ime wifija</label>
-                                            <input className="form-control mr-sm-2 mb-2" type="search" name="name" placeholder="input name" aria-label="Search" value={wifiAddName} onChange={(e) => setWifiAddName(e.target.value)} required />
+                                            <input className="form-control mr-sm-2 mb-2" type="search" name="name" placeholder="Ime wifija" aria-label="Search" value={wifiAddName} onChange={(e) => setWifiAddName(e.target.value)} required />
                                         </div>
                                         <div className="form-group">
                                             <label className="">Če ima wifi geslo dodaj še geslo</label>
-                                            <input className="form-control mr-sm-2 mb-2" type="search" name="password" placeholder="Search by password" aria-label="Search" value={wifiPassword} onChange={(e) => setWifiPassword(e.target.value)} />
+                                            <input className="form-control mr-sm-2 mb-2" type="search" name="password" placeholder="Vnesite geslo" aria-label="Search" value={wifiPassword} onChange={(e) => setWifiPassword(e.target.value)} />
                                         </div>
                                         <div className="form-group">
                                             <button className="btn btn-success mb-2" type="submit" >Dodaj Wifi</button>

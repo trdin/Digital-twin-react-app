@@ -16,28 +16,28 @@ function Header(props) {
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
-                        <li className="nav-item"><Link className="nav-link" to='/'>Home</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to='/studentWork'>StudentWork</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to='/bars'>Bars</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to='/restaurants'>Restaurants</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to='/events'>Events</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to='/wifis'>Wifis</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to='/dorms'>Dorms</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to='/faculties'>Faculties</Link></li>
-                            {
-                                userContext.user ?
-                                    <>
-                                        {!userContext.user.admin ? "" :
-                                            <li className="nav-item"><Link className="nav-link" to='/admin'>Administrator Panel</Link></li>}
-                                        <li className="nav-item"><Link className="nav-link" to='/profile'>Profile</Link></li>
-                                        <li className="nav-item"><Link className="nav-link" to='/logout'>Logout</Link></li>
-                                    </>
-                                    :
-                                    <>
-                                        <li className="nav-item"><Link className="nav-link" to='/login'>Login</Link></li>
-                                        <li className="nav-item"><Link className="nav-link" to='/register'>Register</Link></li>
-                                    </>
-                            }
+                        <li className="nav-item"><Link className="nav-link" to='/'>Domov</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to='/studentWork'>Študentsko Delo</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to='/bars'>Bari</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to='/restaurants'>Restavracije</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to='/events'>Dogodki</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to='/wifis'>Wifi</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to='/dorms'>Študentski Domovi</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to='/faculties'>Fakultete</Link></li>
+                        {
+                            userContext.user ?
+                                <>
+                                    {!userContext.user.admin ? "" :
+                                        <li className="nav-item"><Link className="nav-link" to='/admin'>Administratorska Panela</Link></li>}
+                                    <li className="nav-item"><Link className="nav-link" to='/profile'>Profil</Link></li>
+                                    <li className="nav-item"><Link className="nav-link" to='/logout'>Izpis</Link></li>
+                                </>
+                                :
+                                <>
+                                    <li className="nav-item"><Link className="nav-link" to='/login'>Vpis</Link></li>
+                                    <li className="nav-item"><Link className="nav-link" to='/register'>Registeracija</Link></li>
+                                </>
+                        }
                     </ul>
                 </div>
             </nav>

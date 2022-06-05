@@ -25,7 +25,7 @@ function Profile() {
             />
             <div className='container'>
                 <Jumbotron
-                    description={"Username: " + profile.username}
+                    description={"Uporabniško ime: " + profile.username}
                     bgcolor="darkBackground"
                     textColor="white"
                     textOrient="left"
@@ -37,7 +37,7 @@ function Profile() {
                     textOrient="left"
                 />
                 <Jumbotron
-                    description={"UserID: " + profile._id}
+                    description={"ID Uporabnika: " + profile._id}
                     bgcolor="darkBackground"
                     textColor="white"
                     textOrient="left"

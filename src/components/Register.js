@@ -68,13 +68,13 @@ function Register() {
                                     <input type="text" className="form-control" name="email" placeholder="Email" value={email} onChange={(e) => (setEmail(e.target.value))} />
                                 </div>
                                 <div className="form-group">
-                                    <input type="text" className="form-control" name="username" placeholder="Username" value={username} onChange={(e) => (setUsername(e.target.value))} />
+                                    <input type="text" className="form-control" name="username" placeholder="Uporabniško ime" value={username} onChange={(e) => (setUsername(e.target.value))} />
                                 </div>
                                 <div className="form-group">
-                                    <input type="password" className="form-control" name="password" placeholder="Password" value={password} onChange={(e) => (setPassword(e.target.value))} />
+                                    <input type="password" className="form-control" name="password" placeholder="Geslo" value={password} onChange={(e) => (setPassword(e.target.value))} />
                                 </div>
                                 <div className="form-group">
-                                    <input type="password" className="form-control" name="repeat-password" placeholder="Repeat Password" value={repPassword} onChange={(e) => (setRepPassword(e.target.value))} />
+                                    <input type="password" className="form-control" name="repeat-password" placeholder="Ponovi Geslo" value={repPassword} onChange={(e) => (setRepPassword(e.target.value))} />
                                 </div>
                                 <div className="form-group">
                                     <Button text="Register" />

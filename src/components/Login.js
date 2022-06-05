@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect} from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../userContext';
 import { Navigate } from 'react-router-dom';
 import Button from './Button'
@@ -46,11 +46,11 @@ function Login() {
                             <form onSubmit={Login} className="form-group">
                                 <div className="form-group">
                                     {userContext.user ? <Navigate replace to="/" /> : ""}
-                                    <input type="username" className="form-control" name="username" placeholder="Username"
+                                    <input type="username" className="form-control" name="username" placeholder="Uporabniško ime"
                                         value={username} onChange={(e) => (setUsername(e.target.value))} required />
                                 </div>
                                 <div className="form-group">
-                                    <input type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password"
+                                    <input type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Geslo"
                                         value={password} onChange={(e) => (setPassword(e.target.value))} required />
                                 </div>
                                 <div className="form-group">

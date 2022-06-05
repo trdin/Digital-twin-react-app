@@ -17,9 +17,9 @@ let DefaultIcon = L.icon({
     iconAnchor: [13, 41],
     popupAnchor: [0, -39]
 });
-const customIconSize = [25 , 25]
-const customIconAnchor = [15,15]
-const customIconPopupAnchor = [0,-20]
+const customIconSize = [25, 25]
+const customIconAnchor = [15, 15]
+const customIconPopupAnchor = [0, -20]
 let WorkIcon = L.icon({
     iconUrl: workIcon,
     iconSize: customIconSize,
@@ -56,7 +56,7 @@ let RestaurantsIcon = L.icon({
     iconAnchor: customIconAnchor,
     popupAnchor: customIconPopupAnchor
 });
-let WifisIcon = L.icon({ 
+let WifisIcon = L.icon({
     iconUrl: wifiIcon,
     iconSize: customIconSize,
     iconAnchor: customIconAnchor,

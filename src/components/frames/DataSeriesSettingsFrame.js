@@ -47,17 +47,17 @@ function DataSeriesSettingsFrame(props) {
                         <div className="container">
                             <div className="row justify-content-center">
                                 <div className="form-group d-flex flex-column align-items-baseline flex">
-                                    <label className="label default-label pl-2">Priority</label>
-                                    <input className="form-control" type="text" name="priority" placeholder="priority" aria-label="priority" value={priority} onChange={(e) => setPriority(e.target.value)} />
+                                    <label className="label default-label pl-2">Prioriteta</label>
+                                    <input className="form-control" type="number" name="priority" placeholder="priority" aria-label="priority" value={priority} onChange={(e) => setPriority(e.target.value)} />
                                 </div>
                                 <div className="form-group d-flex flex-column align-items-baseline flex">
-                                    <label className="label default-label pl-2">Refresh rate</label>
-                                    <input className="form-control" type="text" name="refreshRate" placeholder="refresh rate" aria-label="refreshRate" value={refreshRate} onChange={(e) => setRefreshRate(e.target.value)} />
+                                    <label className="label default-label pl-2">Frekvenca posodobitve</label>
+                                    <input className="form-control" type="number" name="refreshRate" placeholder="refresh rate" aria-label="refreshRate" value={refreshRate} onChange={(e) => setRefreshRate(e.target.value)} />
                                 </div>
                             </div>
                         </div>
                         <div className="form-group">
-                            <button className="btn btn-success mt-2" type="submit" >Submit change</button>
+                            <button className="btn btn-success mt-2" type="submit" >Potrdi spremebe</button>
                         </div>
                     </form>
                     {putError === "" ? "" :

@@ -21,7 +21,7 @@ function Jumbotron(props) {
                     }
                     {(props.url === undefined) ? "" :
                         <p className="lead">
-                            <a className="btn btn-primary btn-lg" href={props.url} role="button">Learn more</a>
+                            <a className="btn btn-primary btn-lg" href={props.url} role="button">Preberi Več</a>
                         </p>
                     }
                 </div>

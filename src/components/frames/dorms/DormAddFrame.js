@@ -12,7 +12,7 @@ function DormFrame(props) {
             setPostError("Invalid address")
             return
         }
-        const res = await fetch(process.env.REACT_APP_mainAPIurl + '/faculties/', {
+        const res = await fetch(process.env.REACT_APP_mainAPIurl + '/dorms/', {
             method: 'POST',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' },

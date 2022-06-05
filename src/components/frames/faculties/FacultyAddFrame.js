@@ -41,7 +41,7 @@ function FacultyFrame() {
     const [address, setAddress] = useState('');
     return (
         <div className="jumbotron jumbotron-fluid text-center shadow-sm greenBackground text-white">
-            <h5>add Faculty</h5>
+            <h5>Dodaj Fakulteto</h5>
             <form onSubmit={Add} className="form my-2 my-lg-0 justify-content-center">
                 <div className="container">
                     <div className="form-group d-flex flex-column align-items-baseline">

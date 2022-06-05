@@ -40,7 +40,7 @@ function AdminPanel() {
         {!userContext.user ? <Navigate replace to="/login" /> :
             <>{userContext.user.admin ? "" : <Navigate replace to="/login" />
             }</>}
-        <Jumbotron title="DataSeries settings"
+        <Jumbotron title="Data Series nastavitve"
             bgcolor="greenBackground"
             textColor="black"
             textOrient="center"
@@ -50,7 +50,7 @@ function AdminPanel() {
                 {dataSeries.map(element => (<DataSeriesSettingsFrame dataSeries={element} key={element._id} />))}
             </div>
         </div>
-        <Jumbotron title="Faculties & dorms"
+        <Jumbotron title="Fakultete & Študentski domovi"
             bgcolor="darkBackground"
             textColor="white"
             textOrient="center"

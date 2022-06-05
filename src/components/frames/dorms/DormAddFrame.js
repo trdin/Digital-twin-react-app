@@ -44,15 +44,15 @@ function DormFrame(props) {
             <form onSubmit={Add} className="form my-2 my-lg-0 justify-content-center">
                 <div className="container">
                     <div className="form-group d-flex flex-column align-items-baseline">
-                        <label className="label default-label pl-2">Name</label>
-                        <input className="form-control" type="text" name="name" placeholder="name" aria-label="name" value={name} onChange={(e) => setName(e.target.value)} />
+                        <label className="label default-label pl-2">Ime</label>
+                        <input className="form-control" type="text" name="name" placeholder="ime" aria-label="name" value={name} onChange={(e) => setName(e.target.value)} />
                     </div>
                     <div className="form-group d-flex flex-column align-items-baseline">
                         <label className="label default-label pl-2">Address</label>
-                        <input className="form-control" type="text" name="address" placeholder="address" aria-label="address" value={address} onChange={(e) => setAddress(e.target.value)} />
+                        <input className="form-control" type="text" name="address" placeholder="naslov" aria-label="address" value={address} onChange={(e) => setAddress(e.target.value)} />
                     </div>
                     <div className="form-group">
-                        <button className="btn btn-primary" type="submit" >Add</button>
+                        <button className="btn btn-primary" type="submit" >Dodaj</button>
                     </div>
                 </div>
                 {postError === "" ? "" : <div className="alert alert-danger mt-3" role="alert">{postError}</div>}

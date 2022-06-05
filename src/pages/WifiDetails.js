@@ -132,18 +132,18 @@ function WifiDetails() {
             <div className="jumbotron jumbotron-fluid dataContainer text-center shadow-sm">
                 <div className="container">
                     <h2>{wifi.name}</h2>
-                    {speed === undefined ? <h4>No measurements</h4> :
+                    {speed === undefined ? <h4>Ni meritev</h4> :
                         <h4>Speed: {speed} Mbps</h4>
                     }
                     {userContext.user ?
                         <>
-                            <button onClick={MeasureConnectionSpeed} className="btn darkBackground text-white w-75 mx-auto"> Measure Internet Speed</button>
+                            <button onClick={MeasureConnectionSpeed} className="btn darkBackground text-white w-75 mx-auto"> Izmeri Internetno hitrost</button>
                             {speedMessage !== "" ? <h6 className="mt-2">{speedMessage}</h6> : ""}
                         </>
                         : ""}
                     <div className="graph" ></div>
 
-                    <Link className="btn darkBackground text-white mx-auto mt-3" to='/wifis'>Back to wifis</Link>
+                    <Link className="btn darkBackground text-white mx-auto mt-3" to='/wifis'>Nazaj na Wifi-je</Link>
                 </div>
             </div>
         </div>

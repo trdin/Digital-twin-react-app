@@ -57,21 +57,21 @@ function DormUpdateFrame(props) {
             <form onSubmit={Update} className="form my-2 my-lg-0 justify-content-center">
                 <div className="container">
                     <div className="form-group d-flex flex-column align-items-baseline">
-                        <label className="label default-label pl-2">Name</label>
-                        <input className="form-control" type="text" name="name" placeholder="name" aria-label="name" value={name} onChange={(e) => setName(e.target.value)} />
+                        <label className="label default-label pl-2">Ime</label>
+                        <input className="form-control" type="text" name="name" placeholder="ime" aria-label="name" value={name} onChange={(e) => setName(e.target.value)} />
                     </div>
                     <div className="form-group d-flex flex-column align-items-baseline">
-                        <label className="label default-label pl-2">Address</label>
-                        <input className="form-control" type="text" name="address" placeholder="address" aria-label="address" value={address} onChange={(e) => setAddress(e.target.value)} />
+                        <label className="label default-label pl-2">Naslov</label>
+                        <input className="form-control" type="text" name="address" placeholder="Naslov" aria-label="address" value={address} onChange={(e) => setAddress(e.target.value)} />
                     </div>
                     <div className="form-group">
-                        <button className="btn btn-success" type="submit" >Change</button>
+                        <button className="btn btn-success" type="submit" >Spremeni</button>
                     </div>
                 </div>
 
             </form>
             <form onSubmit={Delete}>
-                <button className="btn btn-danger" type="submit" >Delete</button>
+                <button className="btn btn-danger" type="submit" >Izbriši</button>
             </form>
             {putError === "" ? "" : <div className="alert alert-danger mt-3" role="alert">{putError}</div>}
             {putSuccess === "" ? "" : <div className="alert alert-success mt-3" role="alert">{putSuccess}</div>}
